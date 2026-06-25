@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "ignoreDeprecations": "6.0",
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@app/*": ["app/*"]
+    }
+  },
+  "include": ["app", "src", "__tests__", "app.config.ts", "jest.setup.ts", "eslint.config.js"]
+}
