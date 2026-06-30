@@ -3,5 +3,9 @@ export {
   ConnectedBottomNavigationBar,
   NavigationPlaceholderScreen,
 } from './navigation';
-export { shouldShowBottomNavigation } from './navigation';
+export {
+  getBrandIdFromPathname,
+  isBottomNavigationItemActive,
+  shouldShowBottomNavigation,
+} from './navigation';
 export type { BottomNavigationItem, BottomNavigationItemId } from './navigation';

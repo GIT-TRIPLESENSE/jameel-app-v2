@@ -1,9 +1,17 @@
 import { render } from '@testing-library/react-native';
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 
 import IndexRoute from '@app/index';
 import { i18n } from '@/i18n';
 import { AppProviders } from '@/lib/providers';
+
+const mockPush = jest.fn();
+
+jest.mock('expo-router', () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}));
 
 describe('IndexRoute', () => {
   it('renders the Jameel Motors home prototype through i18n', async () => {

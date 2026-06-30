@@ -19,7 +19,7 @@ export function BrandEntryCard({ entry, onAction, styles }: BrandEntryCardProps)
 
   return (
     <Pressable
-      accessibilityHint={t('jameelHome.prototypeActionHint')}
+      accessibilityHint={t('jameelHome.brands.routeHint')}
       accessibilityLabel={t(entry.ctaKey)}
       accessibilityRole="button"
       onPress={() => onAction(entry.action)}

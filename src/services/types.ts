@@ -44,6 +44,56 @@ export type ApiClient = {
   request<TData, TBody = unknown>(options: ApiRequestOptions<TBody>): Promise<ApiResponse<TData>>;
 };
 
+export type BrandId = 'zeekr' | 'geely';
+
+export type VehicleFilterId = 'all' | 'suv' | 'shootingBrake' | 'electric' | 'ex5';
+
+export type VehicleFilterDto = {
+  id: VehicleFilterId;
+  labelKey: string;
+};
+
+export type VehicleMetricDto = {
+  id: string;
+  labelKey: string;
+  value: string;
+};
+
+export type VehicleTitleDto = {
+  prefixKey: string;
+  accentKey: string;
+  suffixKey?: string;
+};
+
+export type VehiclePriceDto = {
+  prefixKey: string;
+  value: string;
+  currency: string;
+};
+
+export type VehicleDto = {
+  id: string;
+  brandId: BrandId;
+  title: VehicleTitleDto;
+  summaryKey: string;
+  imageUri: string;
+  imageAltKey: string;
+  price: VehiclePriceDto;
+  filterIds: VehicleFilterId[];
+  metrics: [VehicleMetricDto, VehicleMetricDto, VehicleMetricDto];
+};
+
+export type BrandCatalogDto = {
+  brandId: BrandId;
+  filters: VehicleFilterDto[];
+  vehicles: VehicleDto[];
+};
+
+export type VehicleCatalogService = {
+  getBrandCatalog(brandId: BrandId): Promise<ApiResponse<BrandCatalogDto>>;
+};
+
 export type AppServices = {
   apiClient: ApiClient;
+  vehicleCatalog: VehicleCatalogService;
 };

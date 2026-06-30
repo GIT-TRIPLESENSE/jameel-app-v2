@@ -20,7 +20,7 @@ describe('BottomNavigationBar', () => {
 
     const { getByLabelText, getByText } = await render(
       <AppProviders>
-        <BottomNavigationBar activePath="/products" onNavigate={onNavigate} />
+        <BottomNavigationBar activePath="/brands/zeekr/products" onNavigate={onNavigate} />
       </AppProviders>,
     );
 
@@ -29,6 +29,10 @@ describe('BottomNavigationBar', () => {
     expect(getByText(i18n.t('navigation.bottom.network.label'))).toBeTruthy();
     expect(getByText(i18n.t('navigation.bottom.support.label'))).toBeTruthy();
     expect(getByText(i18n.t('navigation.bottom.event.label'))).toBeTruthy();
+    expect(
+      getByLabelText(i18n.t('navigation.bottom.products.accessibilityLabel')).props
+        .accessibilityState,
+    ).toEqual({ selected: true });
 
     fireEvent.press(getByLabelText(i18n.t('navigation.bottom.network.accessibilityLabel')));
 

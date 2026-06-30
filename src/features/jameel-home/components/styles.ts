@@ -58,8 +58,8 @@ export function createJameelHomeStyles(theme: AppTheme, isCompact: boolean) {
       brandSelector: {
         zIndex: theme.layout.screenFlex,
         minHeight: theme.layout.headerControlMinHeight,
-        width: theme.layout.headerControlMinHeight * 3,
-        paddingHorizontal: theme.spacing.base,
+        width: theme.layout.headerBrandSelectorWidth,
+        paddingHorizontal: theme.spacing.md,
         borderRadius: theme.radii.pill,
         backgroundColor: theme.colors.ctaLight,
         flexDirection: 'row',
@@ -75,26 +75,16 @@ export function createJameelHomeStyles(theme: AppTheme, isCompact: boolean) {
       },
       logoMark: {
         position: 'absolute',
-        top: theme.spacing.base,
+        top: theme.spacing.none,
         right: theme.spacing.none,
         bottom: theme.spacing.none,
         left: theme.spacing.none,
-        flex: theme.layout.screenFlex,
-        minWidth: theme.spacing.none,
         alignItems: 'center',
         justifyContent: 'center',
       },
-      logoPrimary: {
-        color: theme.colors.textOnDark,
-        fontFamily: theme.typography.fontFamilies.extraBold,
-        fontSize: theme.typography.sizes.sectionTitle,
-        lineHeight: theme.typography.lineHeights.sectionTitle,
-      },
-      logoSecondary: {
-        color: theme.colors.textOnDark,
-        fontFamily: theme.typography.fontFamilies.semibold,
-        fontSize: theme.typography.sizes.small,
-        lineHeight: theme.typography.lineHeights.small,
+      logoImage: {
+        width: theme.layout.headerLogoWidth,
+        height: theme.layout.headerLogoHeight,
       },
       profileButton: {
         zIndex: theme.layout.screenFlex,

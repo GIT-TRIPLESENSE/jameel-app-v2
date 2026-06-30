@@ -4,34 +4,29 @@ import { Image, Pressable, Text, View } from 'react-native';
 
 import { brandLogos } from '@/lib';
 
-import type { JameelHomeStyles } from '../styles';
+import type { BrandProductsStyles } from '../styles';
 
-type JameelHeaderProps = {
-  onDark?: boolean;
-  styles: JameelHomeStyles;
+type BrandProductsHeaderProps = {
+  selectorLabelKey: string;
+  styles: BrandProductsStyles;
 };
 
-export function JameelHeader({ onDark, styles }: JameelHeaderProps) {
+export function BrandProductsHeader({ selectorLabelKey, styles }: BrandProductsHeaderProps) {
   const { t } = useTranslation();
-  const iconColor = onDark ? styles.meta.darkIconColor.color : styles.meta.lightIconColor.color;
 
   return (
     <View style={styles.header}>
       <Pressable
-        accessibilityHint={t('jameelHome.prototypeActionHint')}
-        accessibilityLabel={t('jameelHome.header.selectorLabel')}
+        accessibilityLabel={t('brandProducts.header.selectorLabel')}
         accessibilityRole="button"
-        onPress={() => undefined}
         style={({ pressed }) => [styles.brandSelector, pressed && styles.pressed]}
       >
         <Text numberOfLines={1} style={styles.brandSelectorText}>
-          {t('jameelHome.header.brandSelector')}
+          {t(selectorLabelKey)}
         </Text>
-        <ChevronDown
-          color={styles.meta.selectorIconColor.color}
-          size={styles.meta.iconSmall.width}
-        />
+        <ChevronDown color={styles.meta.darkIconColor.color} size={styles.meta.iconSmall.width} />
       </Pressable>
+
       <View pointerEvents="none" style={styles.logoMark}>
         <Image
           accessibilityLabel={t('jameelHome.header.logoLabel')}
@@ -41,17 +36,16 @@ export function JameelHeader({ onDark, styles }: JameelHeaderProps) {
           style={styles.logoImage}
         />
       </View>
+
       <Pressable
-        accessibilityHint={t('jameelHome.prototypeActionHint')}
-        accessibilityLabel={t('jameelHome.header.profileLabel')}
+        accessibilityLabel={t('brandProducts.header.profileLabel')}
         accessibilityRole="button"
-        onPress={() => undefined}
         style={({ pressed }) => [styles.profileButton, pressed && styles.pressed]}
       >
         <CircleUserRound
-          color={iconColor}
-          size={styles.meta.iconLarge.width}
-          strokeWidth={styles.meta.iconStroke.width}
+          color={styles.meta.darkIconColor.color}
+          size={styles.meta.iconMedium.width}
+          strokeWidth={styles.meta.iconMedium.strokeWidth}
         />
       </Pressable>
     </View>

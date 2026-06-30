@@ -9,6 +9,7 @@ import { bottomNavigationItems } from '../data';
 import { BottomNavigationTab } from '../molecules/BottomNavigationTab';
 import { createBottomNavigationStyles } from '../styles';
 import type { BottomNavigationItem } from '../types';
+import { isBottomNavigationItemActive } from '../visibility';
 
 type BottomNavigationBarProps = {
   activePath: string;
@@ -30,8 +31,7 @@ export function BottomNavigationBar({
     <View pointerEvents="box-none" style={styles.host}>
       <View accessibilityRole="tablist" style={styles.bar}>
         {items.map((item) => {
-          const href = String(item.href);
-          const isActive = activePath === href || activePath.startsWith(`${href}/`);
+          const isActive = isBottomNavigationItemActive(item, activePath);
 
           return (
             <BottomNavigationTab

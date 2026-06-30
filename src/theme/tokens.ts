@@ -15,8 +15,28 @@ export const themeTokens = {
     overlayStrong: 'rgba(6, 22, 27, 0.70)',
     overlayMedium: 'rgba(6, 22, 27, 0.52)',
     overlaySoft: 'rgba(6, 22, 27, 0.28)',
+    vehicleCardScrim: [
+      'rgba(6, 22, 27, 0.02)',
+      'rgba(6, 22, 27, 0.08)',
+      'rgba(6, 22, 27, 0.44)',
+      'rgba(6, 22, 27, 0.82)',
+      'rgba(6, 22, 27, 0.96)',
+    ],
     glassFill: 'rgba(255, 255, 255, 0.08)',
     glassFillStrong: 'rgba(255, 255, 255, 0.12)',
+    vehicleMetricGlassBorder: 'rgba(255, 255, 255, 0.22)',
+    vehicleMetricGlassDivider: 'rgba(255, 255, 255, 0.20)',
+    vehicleMetricGlassSurface: [
+      'rgba(255, 255, 255, 0.18)',
+      'rgba(255, 255, 255, 0.10)',
+      'rgba(255, 255, 255, 0.06)',
+    ],
+    vehicleMetricGlassSheen: [
+      'rgba(255, 255, 255, 0.16)',
+      'rgba(255, 255, 255, 0.04)',
+      'rgba(255, 255, 255, 0.00)',
+    ],
+    vehicleMetricGlassDepth: ['rgba(6, 22, 27, 0.00)', 'rgba(6, 22, 27, 0.22)'],
     shadow: 'rgba(17, 17, 17, 0.12)',
     jameel: {
       primary: '#21424E',
@@ -107,6 +127,9 @@ export const themeTokens = {
     compactPageMargin: 16,
     headerMinHeight: 72,
     headerControlMinHeight: 44,
+    headerBrandSelectorWidth: 96,
+    headerLogoWidth: 96,
+    headerLogoHeight: 62,
     iconTouchTarget: 44,
     ctaMinHeight: 48,
     bottomNavHeight: 80,
@@ -116,6 +139,13 @@ export const themeTokens = {
     bottomNavHorizontalPadding: 8,
     bottomNavItemMinWidth: 44,
     bottomNavActiveSize: 68,
+    filterChipMinHeight: 40,
+    vehicleCardImageHeight: 184,
+    vehicleCardMaxHeight: 360,
+    vehicleCardContentShadeHeight: 248,
+    vehicleCardButtonMaxHeight: 32,
+    vehicleMetricTrayMinHeight: 64,
+    vehicleCardActionMinWidth: 132,
     quickActionSize: 72,
     brandCardMinHeight: 260,
     storyLargeHeight: 176,
@@ -132,6 +162,52 @@ export const themeTokens = {
     disabled: 0.52,
     pressed: 0.82,
     muted: 0.72,
+  },
+  gradient: {
+    vehicleCardScrim: {
+      locations: [0, 0.32, 0.56, 0.78, 1],
+      start: {
+        x: 0,
+        y: 0,
+      },
+      end: {
+        x: 0,
+        y: 1,
+      },
+    },
+    vehicleMetricGlassSurface: {
+      locations: [0, 0.54, 1],
+      start: {
+        x: 0,
+        y: 0,
+      },
+      end: {
+        x: 0,
+        y: 1,
+      },
+    },
+    vehicleMetricGlassSheen: {
+      locations: [0, 0.42, 1],
+      start: {
+        x: 0,
+        y: 0,
+      },
+      end: {
+        x: 1,
+        y: 1,
+      },
+    },
+    vehicleMetricGlassDepth: {
+      locations: [0, 1],
+      start: {
+        x: 0,
+        y: 0,
+      },
+      end: {
+        x: 0,
+        y: 1,
+      },
+    },
   },
   shadow: {
     soft: {

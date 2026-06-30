@@ -9,4 +9,13 @@ export type {
   ApiResponse,
   ApiResponseMeta,
   AppServices,
+  BrandCatalogDto,
+  BrandId,
+  VehicleCatalogService,
+  VehicleDto,
+  VehicleFilterDto,
+  VehicleFilterId,
+  VehicleMetricDto,
+  VehiclePriceDto,
+  VehicleTitleDto,
 } from './types';
