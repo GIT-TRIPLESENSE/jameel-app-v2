@@ -7,7 +7,7 @@ import { AppProviders } from '@/lib/providers';
 
 describe('IndexRoute', () => {
   it('renders the Jameel Motors home prototype through i18n', async () => {
-    const { getByText } = await render(
+    const { getByText, queryByText } = await render(
       <AppProviders>
         <IndexRoute />
       </AppProviders>,
@@ -15,5 +15,6 @@ describe('IndexRoute', () => {
 
     expect(getByText(i18n.t('jameelHome.hero.title'))).toBeTruthy();
     expect(getByText(i18n.t('jameelHome.brands.title'))).toBeTruthy();
+    expect(queryByText(i18n.t('navigation.bottom.home.label'))).toBeNull();
   });
 });

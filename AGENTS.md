@@ -42,6 +42,7 @@ Canonical product and design context lives in `PRODUCT.md` and `DESIGN.md`.
 - `DESIGN.md`: UI source of truth for brand architecture, tokens, contrast, typography, spacing, components, layout, accessibility, responsive rules, copy rules, and release checklist.
 - `.codex/skills/impeccable/`: local Impeccable design skill for future shaping, critique, audit, polish, and live visual iteration.
 - `src/components/`: shared presentational components that are not owned by a feature.
+- `src/components/navigation/bottom-navigation/`: shared bottom navigation shell and placeholder route screen for non-home routes.
 - `src/features/`: feature modules driven by `PRODUCT.md`.
 - `src/features/jameel-home/`: Jameel Motors umbrella Home prototype, with typed mock content, remote placeholder imagery, and reusable section components.
 - `src/hooks/`: shared hooks used across features.
@@ -65,6 +66,8 @@ Canonical product and design context lives in `PRODUCT.md` and `DESIGN.md`.
   - `src/features/<feature-name>/README.md`
 - Component patterns: keep shared components presentational, token-styled, typed, and unaware of service implementations.
 - Feature screen files should compose imported components, not define nested render components inline. For UI-heavy features, use `components/atoms`, `components/molecules`, and `components/organisms`; each component gets its own file.
+- App shell navigation: `app/_layout.tsx` renders the shared bottom navigation on every route except `/`. The Jameel umbrella homepage must remain free of the bottom navigation.
+- Non-home screens must reserve bottom content padding from the bottom-nav layout tokens because the nav is fixed over the route content.
 - State rules: use Zustand for local client/UI state only. Use TanStack Query for async/server state, caching, retries, invalidation, and request lifecycle.
 - Error handling: services return the normalized `ApiResponse<T>` shape from `src/services/types.ts`. UI-facing error copy must be localized.
 
@@ -73,6 +76,7 @@ Canonical product and design context lives in `PRODUCT.md` and `DESIGN.md`.
 - Tokens live in `src/theme/tokens.ts`.
 - UI code must not use raw colors, spacing, radii, typography sizes, font weights, or layout dimensions.
 - `src/theme/tokens.ts` now contains the first Jameel design-token pass from `DESIGN.md`: Jameel/Zeekr/Geely color roles, Urbanist font families, 4px spacing scale, radius scale, shadows, icon sizes, CTA dimensions, and layout dimensions.
+- Bottom navigation follows the current visual reference: five items (`Home`, `Our products`, `Our network`, `Support`, `Event`), white pill container, dark active circle, line icons, and token-only sizing/color. TODO(product.md): reconcile this with the four-tab MVP IA if the product source of truth changes.
 - Keep `src/theme/tokens.ts`, `DESIGN.md`, and component usage synchronized as visual decisions change.
 - Theme access goes through `ThemeProvider` and `useAppTheme`.
 
@@ -105,6 +109,7 @@ Canonical product and design context lives in `PRODUCT.md` and `DESIGN.md`.
 - Test behavior visible to users and contract boundaries, not implementation details.
 - Route-level scaffold tests live in `__tests__`.
 - The current route-level test verifies the Jameel Home prototype renders through i18n.
+- Bottom navigation tests verify configured labels and navigation events while the homepage test verifies the nav is absent from `/`.
 - Future feature tests should live beside the feature they cover.
 - Service implementations should have contract tests once concrete service methods exist.
 

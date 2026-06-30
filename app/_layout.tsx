@@ -8,14 +8,17 @@ import {
   Urbanist_800ExtraBold,
   useFonts,
 } from '@expo-google-fonts/urbanist';
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
+import { ConnectedBottomNavigationBar, shouldShowBottomNavigation } from '@/components';
 import { AppProviders } from '@/lib/providers';
 import { useAppTheme } from '@/theme';
 
 function RootLayoutContent() {
   const { theme } = useAppTheme();
+  const pathname = usePathname();
+  const isBottomNavigationVisible = shouldShowBottomNavigation(pathname);
 
   return (
     <>
@@ -28,6 +31,7 @@ function RootLayoutContent() {
           },
         }}
       />
+      {isBottomNavigationVisible ? <ConnectedBottomNavigationBar /> : null}
     </>
   );
 }
