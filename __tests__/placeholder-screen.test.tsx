@@ -6,13 +6,14 @@ import { i18n } from '@/i18n';
 import { AppProviders } from '@/lib/providers';
 
 describe('IndexRoute', () => {
-  it('renders the architecture placeholder through i18n', async () => {
+  it('renders the Jameel Motors home prototype through i18n', async () => {
     const { getByText } = await render(
       <AppProviders>
         <IndexRoute />
       </AppProviders>,
     );
 
-    expect(getByText(i18n.t('scaffold.placeholderTitle'))).toBeTruthy();
+    expect(getByText(i18n.t('jameelHome.hero.title'))).toBeTruthy();
+    expect(getByText(i18n.t('jameelHome.brands.title'))).toBeTruthy();
   });
 });
