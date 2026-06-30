@@ -136,3 +136,14 @@ Canonical product and design context lives in `PRODUCT.md` and `DESIGN.md`.
 - `PRODUCT.md` drives features, flows, service contracts, DTOs, and copy requirements.
 - `DESIGN.md` drives UI, design tokens, assets, typography, spacing, color, and component styling.
 - This file MUST be updated as each phase lands so future agents inherit the current truth instead of guessing.
+
+## 12. Branch And Collaboration Workflow
+
+- Codex must never make code, documentation, asset, or configuration changes directly on `main`.
+- Before starting any requested change, Codex must check the current branch. If the current branch is `main`, create or switch to a dedicated branch first.
+- Use one branch per feature, fix, visual iteration, or implementation block. Prefer descriptive branch names with the `codex/` prefix, for example `codex/brand-plp-cards` or `codex/header-brand-logos`.
+- Keep branch scope tight. Do not mix unrelated product work, visual polish, tooling updates, and documentation changes in the same branch unless the user explicitly groups them.
+- Treat `main` as the shared integration baseline. Read from it when needed, but only update it when the user explicitly asks to align `main` with a specific completed branch or set of changes.
+- When asked to align `main`, first confirm the intended source branch or change set, verify the working tree state, run the relevant checks, then merge or fast-forward the approved branch into `main` according to the repo workflow. Push `main` only when explicitly requested.
+- If uncommitted changes already exist, Codex must preserve them, identify whether they belong to the current task, and avoid staging, reverting, or overwriting work from other people.
+- Before committing or opening a PR, Codex must summarize the branch scope and verification results so collaborators can review without guessing.
