@@ -1,18 +1,24 @@
 import { useTranslation } from 'react-i18next';
+import { LinearGradient } from 'expo-linear-gradient';
 import { ImageBackground, Text, View, type ImageStyle } from 'react-native';
 
-import { jameelHomeImages } from '../../data';
+import { jameelHomeHeroImage } from '../../data';
 import { PrototypeButton } from '../atoms/PrototypeButton';
 import { JameelHeader } from '../molecules/JameelHeader';
 import type { JameelHomeStyles } from '../styles';
-import type { ActionHandler } from '../types';
+import type { BrandContextSelection } from '@/components';
 
 type HeroSectionProps = {
-  onAction: ActionHandler;
+  onBrandContextSelect?: (selection: BrandContextSelection) => void;
+  onBrandChoicePress: () => void;
   styles: JameelHomeStyles;
 };
 
-export function HeroSection({ onAction, styles }: HeroSectionProps) {
+export function HeroSection({
+  onBrandChoicePress,
+  onBrandContextSelect,
+  styles,
+}: HeroSectionProps) {
   const { t } = useTranslation();
 
   return (
@@ -20,17 +26,24 @@ export function HeroSection({ onAction, styles }: HeroSectionProps) {
       accessibilityLabel={t('jameelHome.hero.imageAlt')}
       imageStyle={styles.heroImage as ImageStyle}
       resizeMode="cover"
-      source={{ uri: jameelHomeImages.hero }}
+      source={jameelHomeHeroImage}
       style={styles.hero}
     >
-      <View style={styles.heroScrim} />
-      <JameelHeader onDark styles={styles} />
+      <LinearGradient
+        colors={styles.meta.heroPetrolScrim.colors}
+        end={styles.meta.heroPetrolScrim.end}
+        locations={styles.meta.heroPetrolScrim.locations}
+        pointerEvents="none"
+        start={styles.meta.heroPetrolScrim.start}
+        style={styles.heroScrim}
+      />
+      <JameelHeader onBrandContextSelect={onBrandContextSelect} onDark styles={styles} />
       <View style={styles.heroContent}>
         <Text style={styles.heroTitle}>{t('jameelHome.hero.title')}</Text>
         <Text style={styles.heroBody}>{t('jameelHome.hero.body')}</Text>
         <PrototypeButton
           label={t('jameelHome.hero.cta')}
-          onPress={() => onAction('start-quiz')}
+          onPress={onBrandChoicePress}
           styles={styles}
           variant="light"
         />

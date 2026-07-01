@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
 
+import type { BrandContextSelection } from '@/components';
 import { getBrandProductsRoute } from '@/features/brand-products';
 import { JameelHomeScreen } from '@/features/jameel-home';
 import type { PrototypeAction } from '@/features/jameel-home/types';
@@ -13,7 +14,23 @@ function getRouteForHomeAction(action: PrototypeAction) {
     return getBrandProductsRoute('geely');
   }
 
+  if (action === 'open-network') {
+    return '/network' as const;
+  }
+
+  if (action === 'open-membership') {
+    return '/event' as const;
+  }
+
   return null;
+}
+
+function getRouteForBrandContextSelection(selection: BrandContextSelection) {
+  if (selection === 'jameel') {
+    return '/' as const;
+  }
+
+  return getBrandProductsRoute(selection);
 }
 
 export default function IndexRoute() {
@@ -27,5 +44,11 @@ export default function IndexRoute() {
     }
   };
 
-  return <JameelHomeScreen onAction={handleAction} />;
+  const handleBrandContextSelect = (selection: BrandContextSelection) => {
+    router.push(getRouteForBrandContextSelection(selection));
+  };
+
+  return (
+    <JameelHomeScreen onAction={handleAction} onBrandContextSelect={handleBrandContextSelect} />
+  );
 }

@@ -42,13 +42,13 @@ function createStyles(theme: AppTheme) {
     },
     title: {
       color: theme.colors.text,
-      fontFamily: theme.typography.fontFamilies.extraBold,
+      fontFamily: theme.typography.fontFamilies.bold,
       fontSize: theme.typography.sizes.display,
       lineHeight: theme.typography.lineHeights.display,
     },
     body: {
       color: theme.colors.textMuted,
-      fontFamily: theme.typography.fontFamilies.medium,
+      fontFamily: theme.typography.fontFamilies.regular,
       fontSize: theme.typography.sizes.body,
       lineHeight: theme.typography.lineHeights.body,
     },

@@ -1,31 +1,40 @@
-import { ChevronDown, CircleUserRound } from 'lucide-react-native';
+import { CircleUserRound } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Pressable, View } from 'react-native';
 
+import { BrandContextMenu, type BrandContextSelection } from '@/components';
 import { brandLogos } from '@/lib';
+import type { BrandId } from '@/services';
 
 import type { BrandProductsStyles } from '../styles';
 
 type BrandProductsHeaderProps = {
+  brandId: BrandId;
+  onBrandContextSelect?: (selection: BrandContextSelection) => void;
   selectorLabelKey: string;
   styles: BrandProductsStyles;
 };
 
-export function BrandProductsHeader({ selectorLabelKey, styles }: BrandProductsHeaderProps) {
+export function BrandProductsHeader({
+  brandId,
+  onBrandContextSelect,
+  selectorLabelKey,
+  styles,
+}: BrandProductsHeaderProps) {
   const { t } = useTranslation();
 
   return (
     <View style={styles.header}>
-      <Pressable
-        accessibilityLabel={t('brandProducts.header.selectorLabel')}
-        accessibilityRole="button"
-        style={({ pressed }) => [styles.brandSelector, pressed && styles.pressed]}
-      >
-        <Text numberOfLines={1} style={styles.brandSelectorText}>
-          {t(selectorLabelKey)}
-        </Text>
-        <ChevronDown color={styles.meta.darkIconColor.color} size={styles.meta.iconSmall.width} />
-      </Pressable>
+      <BrandContextMenu
+        iconColor={styles.meta.darkIconColor.color}
+        onSelect={onBrandContextSelect}
+        pressedStyle={styles.pressed}
+        selectedId={brandId}
+        selectorAccessibilityLabel={t('brandProducts.header.selectorLabel')}
+        selectorLabel={t(selectorLabelKey)}
+        selectorStyle={styles.brandSelector}
+        selectorTextStyle={styles.brandSelectorText}
+      />
 
       <View pointerEvents="none" style={styles.logoMark}>
         <Image

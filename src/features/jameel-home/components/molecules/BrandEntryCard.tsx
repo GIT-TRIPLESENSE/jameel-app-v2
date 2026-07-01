@@ -1,6 +1,5 @@
-import { ChevronRight } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, Pressable, Text, View, type ImageStyle } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 
 import type { BrandEntry } from '../../types';
 import type { JameelHomeStyles } from '../styles';
@@ -25,18 +24,15 @@ export function BrandEntryCard({ entry, onAction, styles }: BrandEntryCardProps)
       onPress={() => onAction(entry.action)}
       style={({ pressed }) => [styles.brandCard, pressed && styles.pressed]}
     >
-      <ImageBackground
-        accessibilityLabel={t(entry.imageAltKey)}
-        imageStyle={styles.brandCardImage as ImageStyle}
-        resizeMode="cover"
-        source={{ uri: entry.imageUri }}
-        style={styles.brandCardMedia}
-      >
-        <View style={styles.brandCardOverlay} />
+      <View accessibilityLabel={t(entry.imageAltKey)} style={styles.brandCardMedia}>
+        <View style={styles.brandCardSheen} />
         <View style={styles.brandCardContent}>
-          <Text numberOfLines={1} style={styles.brandLogoText}>
-            {t(entry.logoKey)}
-          </Text>
+          <Image
+            accessibilityLabel={t(entry.logoKey)}
+            resizeMode="contain"
+            source={entry.logoSource}
+            style={styles.brandLogoImage}
+          />
           <View style={styles.brandTitleGroup}>
             <Text numberOfLines={1} style={[styles.brandCardTitle, accentStyle]}>
               {t(entry.titleAccentKey)}
@@ -45,17 +41,15 @@ export function BrandEntryCard({ entry, onAction, styles }: BrandEntryCardProps)
               {t(entry.titleRestKey)}
             </Text>
           </View>
-          <View style={styles.brandCardCta}>
-            <Text numberOfLines={1} style={styles.brandCardCtaText}>
-              {t(entry.ctaKey)}
-            </Text>
-            <ChevronRight
-              color={styles.meta.darkIconColor.color}
-              size={styles.meta.iconSmall.width}
-            />
-          </View>
         </View>
-      </ImageBackground>
+        <Image
+          accessibilityIgnoresInvertColors
+          accessibilityLabel={t(entry.imageAltKey)}
+          resizeMode="contain"
+          source={entry.vehicleSource}
+          style={styles.brandVehicleImage}
+        />
+      </View>
     </Pressable>
   );
 }

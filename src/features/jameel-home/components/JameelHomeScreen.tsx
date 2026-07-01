@@ -1,60 +1,91 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { ScrollView, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import type { BrandContextSelection } from '@/components';
 import { useAppTheme } from '@/theme';
 
 import {
   brandEntries,
-  ecosystemStats,
-  expertHubItems,
-  quickActions,
-  scenarioCards,
-  storyCards,
+  faqVideos,
+  journeySteps,
+  membershipSignals,
+  peopleRoles,
+  solutionPaths,
 } from '../data';
 import type { PrototypeAction } from '../types';
 import { createJameelHomeStyles } from './styles';
-import { BrandEntries } from './organisms/BrandEntries';
-import { ClosingDecision } from './organisms/ClosingDecision';
-import { EcosystemStats } from './organisms/EcosystemStats';
-import { ExpertHub } from './organisms/ExpertHub';
+import { FaqVideoSection } from './organisms/FaqVideoSection';
 import { HeroSection } from './organisms/HeroSection';
-import { MembershipPreview } from './organisms/MembershipPreview';
-import { MobilityScenarios } from './organisms/MobilityScenarios';
-import { QuickActions } from './organisms/QuickActions';
-import { Stories } from './organisms/Stories';
+import { JourneyTogether } from './organisms/JourneyTogether';
+import { MembershipContinuity } from './organisms/MembershipContinuity';
+import { PeopleEcosystem } from './organisms/PeopleEcosystem';
+import { SolutionPaths } from './organisms/SolutionPaths';
 
 type JameelHomeScreenProps = {
   onAction?: (action: PrototypeAction) => void;
+  onBrandContextSelect?: (selection: BrandContextSelection) => void;
 };
 
-export function JameelHomeScreen({ onAction }: JameelHomeScreenProps) {
+export function JameelHomeScreen({ onAction, onBrandContextSelect }: JameelHomeScreenProps) {
   const { theme } = useAppTheme();
   const { width } = useWindowDimensions();
+  const scrollViewRef = useRef<ScrollView>(null);
+  const heroHeightRef = useRef(0);
   const isCompact = width < theme.layout.mobileContentMaxWidth;
-  const styles = useMemo(() => createJameelHomeStyles(theme, isCompact), [theme, isCompact]);
+  const styles = useMemo(
+    () => createJameelHomeStyles(theme, isCompact, width),
+    [theme, isCompact, width],
+  );
+  const quizPath = solutionPaths.find((path) => path.id === 'guided');
 
   const handleAction = (action: PrototypeAction) => {
     onAction?.(action);
   };
 
+  const handleBrandChoiceAnchor = () => {
+    scrollViewRef.current?.scrollTo({
+      animated: true,
+      y: heroHeightRef.current,
+    });
+  };
+
   return (
     <SafeAreaView edges={['top']} style={styles.safeArea}>
       <ScrollView
+        ref={scrollViewRef}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         testID="jameel-home-scroll"
       >
-        <HeroSection onAction={handleAction} styles={styles} />
+        <View
+          onLayout={(event) => {
+            heroHeightRef.current = event.nativeEvent.layout.height;
+          }}
+        >
+          <HeroSection
+            onBrandChoicePress={handleBrandChoiceAnchor}
+            onBrandContextSelect={onBrandContextSelect}
+            styles={styles}
+          />
+        </View>
         <View style={styles.mainContent}>
-          <QuickActions actions={quickActions} onAction={handleAction} styles={styles} />
-          <BrandEntries entries={brandEntries} onAction={handleAction} styles={styles} />
-          <MobilityScenarios scenarios={scenarioCards} onAction={handleAction} styles={styles} />
-          <EcosystemStats stats={ecosystemStats} styles={styles} />
-          <ExpertHub items={expertHubItems} onAction={handleAction} styles={styles} />
-          <Stories stories={storyCards} styles={styles} />
-          <MembershipPreview onAction={handleAction} styles={styles} />
-          <ClosingDecision onAction={handleAction} styles={styles} />
+          {quizPath ? (
+            <SolutionPaths
+              entries={brandEntries}
+              onAction={handleAction}
+              quizPath={quizPath}
+              styles={styles}
+            />
+          ) : null}
+          <JourneyTogether steps={journeySteps} styles={styles} />
+          <FaqVideoSection onAction={handleAction} styles={styles} videos={faqVideos} />
+          <MembershipContinuity
+            onAction={handleAction}
+            signals={membershipSignals}
+            styles={styles}
+          />
+          <PeopleEcosystem onAction={handleAction} roles={peopleRoles} styles={styles} />
         </View>
       </ScrollView>
     </SafeAreaView>

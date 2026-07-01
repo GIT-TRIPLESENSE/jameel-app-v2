@@ -7,9 +7,8 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
     brandId: 'zeekr',
     filters: [
       { id: 'all', labelKey: 'brandProducts.filters.all' },
-      { id: 'suv', labelKey: 'brandProducts.filters.suv' },
-      { id: 'shootingBrake', labelKey: 'brandProducts.filters.shootingBrake' },
-      { id: 'electric', labelKey: 'brandProducts.filters.electric' },
+      { id: 'models', labelKey: 'brandProducts.filters.models' },
+      { id: 'services', labelKey: 'brandProducts.filters.services' },
     ],
     vehicles: [
       {
@@ -27,7 +26,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '47.500',
           currency: 'EUR',
         },
-        filterIds: ['shootingBrake', 'electric'],
+        filterIds: ['models'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '655 km' },
           { id: 'power', labelKey: 'brandProducts.metrics.power', value: '475 kW' },
@@ -49,7 +48,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '54.100',
           currency: 'EUR',
         },
-        filterIds: ['suv', 'electric'],
+        filterIds: ['models'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '615 km' },
           { id: 'power', labelKey: 'brandProducts.metrics.power', value: '475 kW' },
@@ -62,9 +61,8 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
     brandId: 'geely',
     filters: [
       { id: 'all', labelKey: 'brandProducts.filters.all' },
-      { id: 'suv', labelKey: 'brandProducts.filters.suv' },
-      { id: 'electric', labelKey: 'brandProducts.filters.electric' },
-      { id: 'ex5', labelKey: 'brandProducts.filters.ex5' },
+      { id: 'models', labelKey: 'brandProducts.filters.models' },
+      { id: 'services', labelKey: 'brandProducts.filters.services' },
     ],
     vehicles: [
       {
@@ -83,7 +81,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '35.900',
           currency: 'EUR',
         },
-        filterIds: ['suv', 'electric', 'ex5'],
+        filterIds: ['models'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '430 km' },
           { id: 'power', labelKey: 'brandProducts.metrics.power', value: '160 kW' },
@@ -106,7 +104,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '38.900',
           currency: 'EUR',
         },
-        filterIds: ['suv', 'electric', 'ex5'],
+        filterIds: ['models'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '410 km' },
           { id: 'comfort', labelKey: 'brandProducts.metrics.comfort', value: 'HUD 13.8"' },

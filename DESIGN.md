@@ -6,7 +6,7 @@ This `DESIGN.md` is the single source of truth for the Jameel Motors app UI. The
 
 Jameel Motors is the master brand. Header, navbar, CTA patterns, grid, spacing, radius, typography, icons, and interactive states remain coherent across the whole app. When the user enters Zeekr or Geely, only brand-specific tokens change: accents, active states, metrics, service icons, focus rings, and small highlights.
 
-The UI must feel premium, automotive, direct, and concrete. The visual language derives from the screens: clean surfaces, dark cards with highly readable vehicle images, rounded pills, white or black CTAs, and accents used sparingly. Avoid any generic landing-page effect: no decorative gradients, no neon glow, no nested cards, no abstract copy.
+The UI must feel premium, automotive, direct, and concrete. The visual language derives from the screens: clean surfaces, dark cards with highly readable vehicle images, consistent 16px rounded elements, 100px rounded white or black CTAs, and accents used sparingly. Avoid any generic landing-page effect: no decorative gradients, no neon glow, no nested cards, no abstract copy.
 
 Visual register:
 
@@ -65,6 +65,8 @@ Use semantic variables. Do not hardcode colors outside these tokens without upda
   --brand-secondary: #202529;
   --brand-background: #f7f7f5;
   --brand-accent: #f7c303;
+  --brand-accent-soft: #fff4cc;
+  --brand-tag-text: #21424e;
 }
 
 [data-brand='zeekr'] {
@@ -87,7 +89,10 @@ Use semantic variables. Do not hardcode colors outside these tokens without upda
 - Jameel Primary `#21424E`: hero overlay, circular icon backgrounds, dark teal surfaces.
 - Jameel Secondary `#202529`: dark card base, text on light surfaces, deep UI controls.
 - Jameel Accent `#F7C303`: icons, badges, small highlights, ecosystem stats.
+- Jameel Accent Soft `#FFF4CC`: opaque, much lighter tint derived from Jameel Accent `#F7C303` for Membership tag backgrounds only.
+- Jameel Tag Text `#21424E`: Jameel petrol text for Membership tags.
 - Jameel Background `#F7F7F5`: app canvas derived from the screen; use for hub sections below the hero.
+- Jameel Petrol Deep `#17323B` and Petrol Soft `#2D5663`: compact path-card surfaces when the Home needs multiple petrol shades without introducing non-brand colors.
 
 ### Zeekr
 
@@ -162,26 +167,25 @@ Allowed weights:
 
 - `400`: body, descriptions, long labels.
 - `500`: nav labels, inactive chips, metadata.
-- `600`: CTAs, tabs, sections.
-- `700`: card titles, numbers, secondary headlines.
-- `800`: main headlines and hub hero.
+- `600`: UI labels only when needed, such as chips or nav labels.
+- `700`: all titles, CTAs, numbers, and headlines.
+- `800`: available in the font family, but do not use it for app titles unless a future art direction explicitly changes the scale.
 
-Recommended mobile scale:
+Current app scale:
 
-- Display hub: `56px`, line-height `0.98`, weight `800`.
-- Brand title: `40px`, line-height `1.05`, weight `800`.
-- Section title: `24px`, line-height `1.12`, weight `800`.
-- Card title: `24px`, line-height `1.05`, weight `800`.
-- Stat number: `34px`, line-height `1`, weight `800`.
-- Body large: `22px`, line-height `1.22`, weight `500`.
-- Body: `16px`, line-height `1.35`, weight `500`.
-- Small: `13px`, line-height `1.2`, weight `500`.
-- Nav label: `10px`-`12px`, line-height `1.1`, weight `600`.
+- Hero title: `32px`, line-height `36px`, weight `700`.
+- Section title: `20px`, line-height `24px`, weight `700`.
+- Card title: `16px`, line-height `20px`, weight `700`.
+- Card body: `14px`, line-height `18px`, weight `400`.
+- Stat number: `34px`, line-height `34px`, weight `700`.
+- Nav label: `11px`, line-height `12px`, weight `600`.
 
 Rules:
 
 - Do not use fonts other than Urbanist.
 - Do not use negative tracking. Letter spacing is `0`, except official logo assets.
+- Titles use `Urbanist_700Bold`. Body and descriptive text use `Urbanist_400Regular`.
+- White text over imagery must sit on a dark scrim strong enough for AA contrast at 14px regular. If readability drops, darken the image overlay rather than increasing text weight.
 - Maximum 65 characters per line for long text.
 - Brand headlines have one accent word only: `Zeekr,` or `Geely,`. The rest remains primary.
 - Avoid casual language mixing in the same screen. Choose one locale per screen: Italian or English.
@@ -220,11 +224,10 @@ Use auto-layout/Flex/Grid with fixed tokens. Do not calculate spacing by eye.
 
 Radius:
 
-- `radius-sm: 12px`: filter chips, compact stat tiles.
-- `radius-md: 16px`: service cards, small story cards.
-- `radius-lg: 20px`: model cards and brand cards.
-- `radius-xl: 28px`: hero image containers and large panels.
-- `radius-pill: 999px`: CTAs, selector, tab pill, navbar active.
+- Standard element radius: `16px` for cards, panels, filters, selectors, media, nav containers, badges, icon frames, and controls.
+- Tag radius: `8px` for non-interactive editorial tags, such as Membership `Experience` and `Benefit`.
+- CTA radius: `100px` for primary and secondary CTAs, including model-card CTAs, detail CTAs, hero CTAs, Membership CTA, and compact play/action CTAs.
+- Square-edged full-width bands may use `0px` only when the section is intentionally edge-to-edge, such as attached journey banners.
 
 Borders:
 
@@ -246,20 +249,21 @@ Mobile structure:
 
 - Minimum header area height: `72px` + safe area.
 - Side padding: `24px`.
-- Brand selector on the left: pill `36px`-`44px` high, pill radius, current label, chevron down.
+- Brand selector on the left: visible chip `32px` high, `16px` radius, current label, chevron down, with extra touch area when needed.
 - Jameel Motors logo centered: use official asset, do not recreate with text if the asset exists.
 - Account icon on the right: minimum touch target `44px`, stroke `2px`.
 
 Colors:
 
-- On dark hero or dark image: logo and icons `#FFFFFF`; white selector with dark text.
+- On dark hero or dark image: logo and icons `#FFFFFF`; the Home hero `jameel` selector is a white 48px button with dark text and icon.
 - On light brand pages: logo and icons `#111111`; selector `rgba(255,255,255,0.62)` or `rgba(17,17,17,0.06)` with `#111111` text.
 - Do not color the header with Zeekr or Geely accents. The brand changes in the content, not in the structure.
 
 Behavior:
 
 - Header remains stable when changing brand.
-- The selector only updates label and menu.
+- The selector opens a compact contextual menu with `Jameel`, `Zeekr`, and `Geely`; the current page context must be visually selected with background treatment and a check icon.
+- Selecting `Jameel` returns to the umbrella Home. Selecting `Zeekr` or `Geely` preserves the current section when possible: Products stays in Products, Network stays in Network, and the Jameel Home routes to the selected brand Products page.
 - The brand menu must have items at least `44px` high, with selected state shown by check or weight, not color alone.
 
 ## 9. Bottom Navbar
@@ -269,7 +273,7 @@ The navbar is invariant across all areas.
 Structure:
 
 - Fixed bottom position, above safe area.
-- Pill or rounded-rectangle container `76px`-`84px` high, radius `28px` or pill.
+- Rounded container `76px`-`84px` high, radius `16px`.
 - `#FFFFFF` background with soft shadow.
 - Maximum 5 items.
 - Each item has a line icon above and label below.
@@ -277,7 +281,7 @@ Structure:
 
 Active state:
 
-- Active item inside dark `#111111` circle/pill or brand primary dark.
+- Active item inside dark `#111111` rounded 16px control or brand primary dark.
 - Active icon and label `#FFFFFF`.
 - Inactive items use `#111111` on white navbar.
 - Do not use accent as the fill for the main active tab; accents stay in brand content.
@@ -307,8 +311,8 @@ CTAs must be white or black based on the background.
 
 Dimensions:
 
-- Minimum height `48px`.
-- Pill radius.
+- Height `48px` for all CTAs.
+- CTA radius `100px`.
 - Horizontal padding `24px`.
 - Font `16px`-`17px`, weight `700`.
 - Active/tap: translateY `1px`, no layout change.
@@ -331,7 +335,7 @@ Forbidden:
 
 ### Filter Chips
 
-- Pill shape, height `32px`-`40px`.
+- Rounded 16px shape, height `32px`.
 - Inactive: light gray surface, primary text.
 - Active: brand accent fill, text chosen for contrast.
 - Zeekr: if active chip uses `#E8432E`, prefer `#111111` text for AA. If white text is kept for visual fidelity, it must be short, bold, and not below `18.66px`.
@@ -342,12 +346,14 @@ Forbidden:
 
 Mandatory pattern for Zeekr and Geely:
 
-- Full-width card on mobile, radius `20px`.
+- Full-width card on mobile, radius `16px`.
 - Dark background: Zeekr `#232323`, Geely `#171717`.
 - Vehicle image at the top, edge-to-edge, readable, not too dark.
 - Heart/favorite in top right, `44px` touch target, white stroke.
 - Title on the left, price on the right.
 - Metrics tray with 3 columns, slightly lighter dark or glass background, soft border.
+- Internal spacing uses `16px` between title/price, metrics tray, and CTA row; metric values and labels use an `8px` internal gap.
+- Metrics tray minimum height is `72px` so values do not feel compressed.
 - Metric numbers in brand accent only on dark card: Zeekr `#E8432E`, Geely `#0090D6`.
 - Final actions: secondary outline on the left, primary white on the right.
 
@@ -364,7 +370,7 @@ Glass specs:
 - Border: `1px solid rgba(255, 255, 255, 0.18)`.
 - Inner shadow: very light, for example `inset 0 1px 0 rgba(255,255,255,0.10)`.
 - External shadow: forbidden if it creates a glow effect. No colored halo.
-- Radius: `12px`-`16px`, lower than the main card radius.
+- Radius: `16px`.
 - Text: always checked for AA. Use `#FFFFFF` for primary labels and brand accent only for large values or metrics that pass contrast.
 - Fallback: if `backdrop-filter` is unsupported, use static dark fill `rgba(255,255,255,0.08)` without losing contrast.
 - Performance: do not animate blur or background-filter; animate only `opacity` and `transform`.
@@ -378,6 +384,15 @@ Glass specs:
 - Chevron on the right, do not use "Open" text.
 - Minimum card height `72px`.
 - If two cards side by side do not remain readable on narrow mobile, switch to one column.
+
+### Dealer And Workshop Locator
+
+- Lives in the brand Network tab and uses the same shell as brand Product pages: stable Jameel header, brand selector, brand background, and bottom-nav reserved space.
+- Search is manual-first for MVP. If device location is added later, permission denial must still leave manual search available.
+- Filters use the standard chip pattern: `All`, `Dealers`, `Workshops`; active state uses brand accent fill with contrast-safe text and selected state that is not color-only.
+- The map is currently a selectable mock panel, not a live map SDK. Keep it dark on brand pages, with brand-accent active pins and separate dealer/workshop iconography.
+- Location cards use dark brand surfaces with accent icons, short metadata, and a chevron. Detail content stays inline below the map, not in a modal.
+- Detail CTAs follow the global CTA rule: white primary on dark, outline secondary on dark, maximum two visible actions.
 
 ### Ecosystem Stat Cards
 
@@ -395,7 +410,7 @@ Glass specs:
 - Dark gradient overlay for readability.
 - Jameel accent badge with dark text.
 - White title, white body if contrast remains at least `4.5:1`.
-- Radius `16px`-`20px`.
+- Radius `16px`.
 - Avoid text over image areas that are too bright without scrim.
 
 ### Icons
@@ -411,19 +426,25 @@ Glass specs:
 
 First screen:
 
-- Hero with city/highway image, dark teal overlay.
+- Hero with the local night skyline image, an evident left-to-right Jameel petrol gradient scrim, immersive extended height, low-positioned copy, and one primary white CTA. Do not replace the current hero image when refining the overlay.
 - Jameel Motors logo visible and centered.
-- Large headline: `Your Jameel Motors hub`.
-- Subtitle max 3 lines.
-- White primary CTA.
-- Hero bottom with wide radius.
+- Large headline centered on the EV journey, not a corporate claim.
+- Subtitle max 3 lines about guidance before, during, and after the choice.
+- One primary CTA in the hero; it acts as an anchor to the vehicle/brand choice section, not as a quiz entry.
+- Hero bottom with `16px` radius.
 
 Below hero:
 
-- Quick actions in three columns with Jameel primary circular icons and gold accent.
-- `Explore our brands` section: two dark brand cards, large vehicle images, brand logo, claim with accent word.
-- `Explore Jameel ecosystem` section: light stat cards.
-- Stories section: editorial cards with images and badges.
+- Current Concept 2 Guide-Oriented architecture: primary hero CTA, vehicle choice, quiz entry point, EV journey path banners (`Before`, `During`, `After`) under the title `An ecosystem that always guides you`, knowledge-pill video stories, Membership continuity, and people behind the ecosystem.
+- Sections must alternate visually through different component treatments: long photographic hero, two compact brand cards, a full-width quiz entry card, full-width attached journey banners, compact vertical story cards on the page background, dark Membership panel, and a petrol full-width people carousel for the network.
+- Do not create movement by disaligning cards. Card grids and stacked cards should stay aligned unless a product pattern explicitly requires otherwise.
+- Geely and Zeekr must appear immediately after the hero as two side-by-side brand cards without visible internal CTAs. These cards use a neutral dark surface, the official brand logo at the top, an accent headline, and a large isolated vehicle image anchored low in the card. Do not use lifestyle/photo backgrounds for these brand-choice cards. Follow them with a compact full-width guided banner before any long educational section. The guided entry is a white row with a light stroke, subtle lower shadow, no icon, title, short helper copy, and a right arrow, not an image card.
+- In the journey path section, keep only the path banners beneath the title. Do not add extra explanatory copy or duplicate CTAs inside that section. Path banners are full-viewport width, square-edged, attached to each other, and use Jameel Primary, Petrol Soft, and Petrol Deep. Separate banners with simple geometric angled shapes, not spacing. Each banner has a short label, one-line title, two-line subtitle, and the representative icon on the right.
+- Do not render the `Jameel as guide` media/storytelling section in the current Home iteration.
+- The knowledge-pill video story section sits directly below the EV journey ecosystem banners on the page background, without a petrol section fill. It has no yellow eyebrow; its title is `EV expert hub` and must stay contrast-safe on the light page background. Cards render as a horizontal stacked carousel: one central card is active, lateral cards remain partially visible behind it with parallax-style scale and slight rotation, and horizontal swipe changes the active card. Do not animate card-level opacity in this carousel; keep every rendered card fully opaque and darken lateral cards only through the internal image scrim.
+- Membership uses the supplied community image as a dark editorial background with no decorative icon and no `MEMBERSHIP` eyebrow. The card height is hug-content, not fixed: solid pale-yellow 32px tags (`Experience`, `Benefit`) sit above the strong white title with `8px` radius, Jameel petrol `#21424E` text, and an opaque much lighter yellow background derived from the Jameel accent. These are editorial tags, not filter chips, and must not use transparent fills. Keep all membership copy in English until localization is explicitly planned.
+- The network section must show people and roles, not coverage numbers. It sits after Membership inside a full-width Jameel petrol band, uses the global 20pt section heading, a contrast-safe text `Our network` CTA, and compact horizontal cards for Consultants, Dealers, and Customer care.
+- The knowledge section should not own the full-width petrol band in the current Home iteration. Its `EV expert hub` title sits on the page background, followed by a horizontal stacked carousel of compact vertical story cards. Cards should stay small and show only the problem-led title over the image.
 
 ### Zeekr Brand Section
 
@@ -431,7 +452,7 @@ Below hero:
 - Stable Jameel Motors header.
 - Headline: `Zeekr,` in `#E8432E`, rest `#232323`.
 - Section label: `Models`.
-- Filter chips with active Zeekr accent.
+- Top chips: `All`, `Models`, `Services`; active Zeekr chip uses the Zeekr accent.
 - Zeekr dark model card `#232323`, metrics in red accent.
 - Metrics tray and small data panels can use controlled glass.
 - Dark service card with red iconography.
@@ -443,7 +464,7 @@ Below hero:
 - Stable Jameel Motors header.
 - Headline: `Geely,` in `#0090D6` only if placed on a surface with sufficient contrast; on `#DEDFE2` blue does not pass for text, so prefer a lighter surface, dark backing, or primary text and reserve blue for underline/fill.
 - Section label: `Modelli`.
-- Filter chips with active Geely accent and dark text for AA.
+- Top chips: `All`, `Models`, `Services`; active Geely chip uses Geely accent with dark text for AA.
 - Geely dark model card `#171717`, metrics in blue accent.
 - Metrics tray and small data panels can use controlled glass.
 - Dark service card with blue iconography.
@@ -454,7 +475,7 @@ Below hero:
 - Cars must be clear, large, and recognizable. Do not use decorative or generic stock images.
 - Avoid crops that cut off the vehicle front, wheels, or profile.
 - The Jameel hero background must communicate urban mobility and infrastructure, not just skyline.
-- Every image with text overlaid requires a dedicated overlay: controlled gradient or scrim, not heavy blur.
+- Every image with text overlaid requires a dedicated overlay: controlled gradient or scrim, not heavy blur. The Jameel Home hero specifically uses a strong petrol gradient from left to right over the existing image.
 - Prefer real images or premium automotive renders, with color temperature coherent with the brand.
 - Do not use broken images, placeholders, or assets with watermarks.
 
@@ -486,7 +507,7 @@ Below hero:
 
 ### Text And Readability
 
-- Minimum body `16px` when text must be read; nav label can go down to `10px`-`12px` only with icon and clear context.
+- Minimum body `14px` when text must be read; nav label can go down to `10px`-`12px` only with icon and clear context.
 - Do not rely on color alone for information: for example `Range 655km` must have label + value, not only a red/blue value.
 - Avoid lines that are too long; max `65ch`.
 - Support Dynamic Type / font scaling at least up to 200% without content loss or overlap.

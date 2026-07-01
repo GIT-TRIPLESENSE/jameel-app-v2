@@ -91,7 +91,7 @@ export function createBrandProductsStyles(
       },
       headlineLine: {
         color: theme.colors.text,
-        fontFamily: theme.typography.fontFamilies.extraBold,
+        fontFamily: theme.typography.fontFamilies.bold,
         fontSize: theme.typography.sizes.display,
         lineHeight: theme.typography.lineHeights.display,
       },
@@ -100,7 +100,7 @@ export function createBrandProductsStyles(
       },
       sectionTitle: {
         color: theme.colors.text,
-        fontFamily: theme.typography.fontFamilies.extraBold,
+        fontFamily: theme.typography.fontFamilies.bold,
         fontSize: theme.typography.sizes.sectionTitle,
         lineHeight: theme.typography.lineHeights.sectionTitle,
       },
@@ -125,7 +125,7 @@ export function createBrandProductsStyles(
       },
       filterChipText: {
         color: theme.colors.text,
-        fontFamily: theme.typography.fontFamilies.semibold,
+        fontFamily: theme.typography.fontFamilies.regular,
         fontSize: theme.typography.sizes.body,
         lineHeight: theme.typography.lineHeights.body,
         textAlign: 'center',
@@ -174,7 +174,7 @@ export function createBrandProductsStyles(
         flex: theme.layout.screenFlex,
         justifyContent: 'flex-end',
         padding: theme.spacing.base,
-        gap: theme.spacing.md,
+        gap: theme.spacing.base,
       },
       vehicleTitleRow: {
         flexDirection: 'row',
@@ -187,10 +187,11 @@ export function createBrandProductsStyles(
         flexDirection: 'row',
         flexWrap: 'wrap',
         columnGap: theme.spacing.sm,
+        rowGap: theme.spacing.sm,
       },
       vehicleTitle: {
         color: theme.colors.textOnDark,
-        fontFamily: theme.typography.fontFamilies.extraBold,
+        fontFamily: theme.typography.fontFamilies.bold,
         fontSize: theme.typography.sizes.cardTitle,
         lineHeight: theme.typography.lineHeights.cardTitle,
         textShadowColor: theme.colors.overlayStrong,
@@ -205,7 +206,7 @@ export function createBrandProductsStyles(
       },
       vehicleSummary: {
         color: theme.colors.textOnDark,
-        fontFamily: theme.typography.fontFamilies.medium,
+        fontFamily: theme.typography.fontFamilies.regular,
         fontSize: theme.typography.sizes.body,
         lineHeight: theme.typography.lineHeights.body,
       },
@@ -216,7 +217,7 @@ export function createBrandProductsStyles(
       },
       pricePrefix: {
         color: theme.colors.textOnDark,
-        fontFamily: theme.typography.fontFamilies.medium,
+        fontFamily: theme.typography.fontFamilies.regular,
         fontSize: theme.typography.sizes.small,
         lineHeight: theme.typography.lineHeights.small,
         textShadowColor: theme.colors.overlayStrong,
@@ -228,7 +229,7 @@ export function createBrandProductsStyles(
       },
       priceValue: {
         color: theme.colors.textOnDark,
-        fontFamily: theme.typography.fontFamilies.extraBold,
+        fontFamily: theme.typography.fontFamilies.bold,
         fontSize: theme.typography.sizes.bodyLarge,
         lineHeight: theme.typography.lineHeights.bodyLarge,
         textShadowColor: theme.colors.overlayStrong,
@@ -260,8 +261,8 @@ export function createBrandProductsStyles(
         zIndex: theme.layout.screenFlex,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: theme.spacing.md,
-        gap: theme.spacing.sm,
+        paddingHorizontal: theme.spacing.base,
+        gap: theme.spacing.md,
       },
       metricItemDivider: {
         borderLeftWidth: StyleSheet.hairlineWidth,
@@ -269,7 +270,7 @@ export function createBrandProductsStyles(
       },
       metricLabel: {
         color: brandTheme.secondaryOnDarkColor,
-        fontFamily: theme.typography.fontFamilies.medium,
+        fontFamily: theme.typography.fontFamilies.regular,
         fontSize: theme.typography.sizes.small,
         lineHeight: theme.typography.lineHeights.small,
         textAlign: 'center',
@@ -283,14 +284,14 @@ export function createBrandProductsStyles(
       },
       vehicleActions: {
         flexDirection: 'row',
-        gap: theme.spacing.md,
+        gap: theme.spacing.base,
       },
       vehicleButton: {
         flex: theme.layout.screenFlex,
         height: theme.layout.vehicleCardButtonMaxHeight,
         maxHeight: theme.layout.vehicleCardButtonMaxHeight,
         minWidth: theme.layout.vehicleCardActionMinWidth,
-        borderRadius: theme.radii.pill,
+        borderRadius: theme.radii.cta,
         borderWidth: StyleSheet.hairlineWidth,
         alignItems: 'center',
         justifyContent: 'center',
@@ -313,12 +314,12 @@ export function createBrandProductsStyles(
       stateTitle: {
         color: theme.colors.text,
         fontFamily: theme.typography.fontFamilies.bold,
-        fontSize: theme.typography.sizes.bodyLarge,
-        lineHeight: theme.typography.lineHeights.bodyLarge,
+        fontSize: theme.typography.sizes.cardTitle,
+        lineHeight: theme.typography.lineHeights.cardTitle,
       },
       stateBody: {
         color: theme.colors.textMuted,
-        fontFamily: theme.typography.fontFamilies.medium,
+        fontFamily: theme.typography.fontFamilies.regular,
         fontSize: theme.typography.sizes.body,
         lineHeight: theme.typography.lineHeights.body,
       },

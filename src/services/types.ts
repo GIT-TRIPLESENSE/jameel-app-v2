@@ -46,7 +46,56 @@ export type ApiClient = {
 
 export type BrandId = 'zeekr' | 'geely';
 
-export type VehicleFilterId = 'all' | 'suv' | 'shootingBrake' | 'electric' | 'ex5';
+export type DealerNetworkFilterId = 'all' | 'dealer' | 'workshop';
+
+export type DealerNetworkLocationType = 'dealer' | 'workshop';
+
+export type DealerNetworkCtaId = 'contact' | 'testDrive' | 'service';
+
+export type DealerNetworkFilterDto = {
+  id: DealerNetworkFilterId;
+  labelKey: string;
+};
+
+export type DealerNetworkMapPositionDto = {
+  xPercent: number;
+  yPercent: number;
+};
+
+export type DealerNetworkLocationDto = {
+  id: string;
+  brandId: BrandId;
+  type: DealerNetworkLocationType;
+  nameKey: string;
+  cityKey: string;
+  addressKey: string;
+  distanceKm: number;
+  phone: string;
+  openingHoursKey: string;
+  certificationKey: string;
+  capabilityKeys: string[];
+  ctaIds: DealerNetworkCtaId[];
+  mapPosition: DealerNetworkMapPositionDto;
+};
+
+export type DealerNetworkSummaryDto = {
+  dealerCount: number;
+  workshopCount: number;
+  closestCityKey: string;
+};
+
+export type BrandDealerNetworkDto = {
+  brandId: BrandId;
+  filters: DealerNetworkFilterDto[];
+  locations: DealerNetworkLocationDto[];
+  summary: DealerNetworkSummaryDto;
+};
+
+export type DealerNetworkService = {
+  getBrandDealerNetwork(brandId: BrandId): Promise<ApiResponse<BrandDealerNetworkDto>>;
+};
+
+export type VehicleFilterId = 'all' | 'models' | 'services';
 
 export type VehicleFilterDto = {
   id: VehicleFilterId;
@@ -95,5 +144,6 @@ export type VehicleCatalogService = {
 
 export type AppServices = {
   apiClient: ApiClient;
+  dealerNetwork: DealerNetworkService;
   vehicleCatalog: VehicleCatalogService;
 };

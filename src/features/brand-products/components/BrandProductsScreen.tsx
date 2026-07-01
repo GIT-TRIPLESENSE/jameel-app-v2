@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ScrollView, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import type { BrandContextSelection } from '@/components';
 import type { BrandId, VehicleFilterId } from '@/services';
 import { useAppTheme } from '@/theme';
 
@@ -15,9 +16,10 @@ import { createBrandProductsStyles } from './styles';
 
 type BrandProductsScreenProps = {
   brandId: BrandId;
+  onBrandContextSelect?: (selection: BrandContextSelection) => void;
 };
 
-export function BrandProductsScreen({ brandId }: BrandProductsScreenProps) {
+export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProductsScreenProps) {
   const { theme } = useAppTheme();
   const { width } = useWindowDimensions();
   const [filterState, setFilterState] = useState<{
@@ -59,7 +61,12 @@ export function BrandProductsScreen({ brandId }: BrandProductsScreenProps) {
     <SafeAreaView edges={['top']} style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <BrandProductsHeader selectorLabelKey={brandTheme.selectorLabelKey} styles={styles} />
+          <BrandProductsHeader
+            brandId={brandId}
+            onBrandContextSelect={onBrandContextSelect}
+            selectorLabelKey={brandTheme.selectorLabelKey}
+            styles={styles}
+          />
           <BrandProductsHero
             headlineBrandKey={brandTheme.headlineBrandKey}
             headlineRestKey={brandTheme.headlineRestKey}

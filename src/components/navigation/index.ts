@@ -3,6 +3,7 @@ export {
   ConnectedBottomNavigationBar,
   NavigationPlaceholderScreen,
 } from './bottom-navigation';
+export { BrandContextMenu, type BrandContextSelection } from './brand-context-menu';
 export {
   getBrandIdFromPathname,
   isBottomNavigationItemActive,

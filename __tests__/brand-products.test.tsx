@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 
 import { BrandProductsScreen } from '@/features/brand-products';
 import { i18n } from '@/i18n';
@@ -15,12 +15,12 @@ describe('BrandProductsScreen', () => {
 
     expect(await findByText(i18n.t('brandProducts.brands.geely.headlineBrand'))).toBeTruthy();
     expect(await findByText(i18n.t('brandProducts.vehicles.geelyEx5Pro.titleSuffix'))).toBeTruthy();
-    expect(await findByLabelText(i18n.t('brandProducts.filters.ex5'))).toBeTruthy();
+    expect(await findByLabelText(i18n.t('brandProducts.filters.services'))).toBeTruthy();
     expect(queryByText(i18n.t('brandProducts.vehicles.geelyEx5Pro.summary'))).toBeNull();
   });
 
-  it('filters the Zeekr listing without changing the branded screen shell', async () => {
-    const { findAllByText, findByLabelText, findByText, getByText, queryByText } = await render(
+  it('keeps the Zeekr listing under the Models category', async () => {
+    const { findAllByText, findByLabelText, findByText, getByText } = await render(
       <AppProviders>
         <BrandProductsScreen brandId="zeekr" />
       </AppProviders>,
@@ -32,11 +32,42 @@ describe('BrandProductsScreen', () => {
     );
     expect(getByText(i18n.t('brandProducts.vehicles.zeekr7gt.titleAccent'))).toBeTruthy();
 
-    fireEvent.press(await findByLabelText(i18n.t('brandProducts.filters.suv')));
+    fireEvent.press(await findByLabelText(i18n.t('brandProducts.filters.models')));
 
     await waitFor(() => {
+      expect(getByText(i18n.t('brandProducts.vehicles.zeekr7gt.titleAccent'))).toBeTruthy();
       expect(getByText(i18n.t('brandProducts.vehicles.zeekr7x.titleAccent'))).toBeTruthy();
-      expect(queryByText(i18n.t('brandProducts.vehicles.zeekr7gt.titleAccent'))).toBeNull();
     });
+  });
+
+  it('marks the active brand and reports brand context selections', async () => {
+    const onBrandContextSelect = jest.fn();
+    const { findByLabelText } = await render(
+      <AppProviders>
+        <BrandProductsScreen brandId="geely" onBrandContextSelect={onBrandContextSelect} />
+      </AppProviders>,
+    );
+
+    fireEvent.press(await findByLabelText(i18n.t('brandProducts.header.selectorLabel')));
+
+    expect(
+      (
+        await findByLabelText(
+          i18n.t('brandSwitcher.optionLabel', {
+            brand: i18n.t('brandSwitcher.options.geely'),
+          }),
+        )
+      ).props.accessibilityState,
+    ).toEqual({ selected: true });
+
+    fireEvent.press(
+      await findByLabelText(
+        i18n.t('brandSwitcher.optionLabel', {
+          brand: i18n.t('brandSwitcher.options.jameel'),
+        }),
+      ),
+    );
+
+    expect(onBrandContextSelect).toHaveBeenCalledWith('jameel');
   });
 });
