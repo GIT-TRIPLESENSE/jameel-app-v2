@@ -1,6 +1,6 @@
-import { CircleUserRound } from 'lucide-react-native';
+// import { CircleUserRound } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { Image, Pressable, View } from 'react-native';
+import { Image, View } from 'react-native';
 
 import { BrandContextMenu, type BrandContextSelection } from '@/components';
 import { brandLogos } from '@/lib';
@@ -15,7 +15,7 @@ type JameelHeaderProps = {
 
 export function JameelHeader({ onBrandContextSelect, onDark, styles }: JameelHeaderProps) {
   const { t } = useTranslation();
-  const iconColor = onDark ? styles.meta.darkIconColor.color : styles.meta.lightIconColor.color;
+  // const iconColor = onDark ? styles.meta.darkIconColor.color : styles.meta.lightIconColor.color;
   const selectorIconColor = styles.meta.selectorIconColor.color;
 
   return (
@@ -43,19 +43,23 @@ export function JameelHeader({ onBrandContextSelect, onDark, styles }: JameelHea
           style={styles.logoImage}
         />
       </View>
-      <Pressable
+      {/*
+        Profile icon hidden by stakeholder request.
+        Restore this block together with the CircleUserRound and Pressable imports when profile access returns.
+        <Pressable
         accessibilityHint={t('jameelHome.prototypeActionHint')}
         accessibilityLabel={t('jameelHome.header.profileLabel')}
         accessibilityRole="button"
         onPress={() => undefined}
         style={({ pressed }) => [styles.profileButton, pressed && styles.pressed]}
-      >
+        >
         <CircleUserRound
-          color={iconColor}
-          size={styles.meta.iconLarge.width}
-          strokeWidth={styles.meta.iconStroke.width}
+        color={iconColor}
+        size={styles.meta.iconLarge.width}
+        strokeWidth={styles.meta.iconStroke.width}
         />
-      </Pressable>
+        </Pressable>
+      */}
     </View>
   );
 }

@@ -7,7 +7,7 @@ import { AppProviders } from '@/lib/providers';
 
 describe('DealerNetworkScreen', () => {
   it('renders a Geely dealer network from the mock service', async () => {
-    const { findAllByText, findByLabelText, findByText } = await render(
+    const { findAllByText, findByLabelText, findByText, queryByLabelText } = await render(
       <AppProviders>
         <DealerNetworkScreen brandId="geely" />
       </AppProviders>,
@@ -17,6 +17,7 @@ describe('DealerNetworkScreen', () => {
     expect(await findAllByText(i18n.t('dealerNetwork.locations.geelyMilano.name'))).toBeTruthy();
     expect(await findByLabelText(i18n.t('dealerNetwork.search.accessibilityLabel'))).toBeTruthy();
     expect(await findByText(i18n.t('dealerNetwork.map.title'))).toBeTruthy();
+    expect(queryByLabelText(i18n.t('dealerNetwork.header.profileLabel'))).toBeNull();
   });
 
   it('filters the Zeekr network to workshops', async () => {

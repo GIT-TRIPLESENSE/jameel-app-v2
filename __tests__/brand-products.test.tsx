@@ -27,6 +27,7 @@ describe('BrandProductsScreen', () => {
     expect(await findByLabelText(i18n.t('brandProducts.filters.services'))).toBeTruthy();
     expect(queryByText('Models')).toBeNull();
     expect(queryByLabelText('All')).toBeNull();
+    expect(queryByLabelText(i18n.t('brandProducts.header.profileLabel'))).toBeNull();
     expect(queryByText(i18n.t('brandProducts.vehicles.geelyEx5Pro.summary'))).toBeNull();
   });
 

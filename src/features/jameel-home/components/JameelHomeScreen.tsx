@@ -7,18 +7,18 @@ import { useAppTheme } from '@/theme';
 
 import {
   brandEntries,
-  faqVideos,
   journeySteps,
-  membershipSignals,
+  // faqVideos,
+  // membershipSignals,
   peopleRoles,
   solutionPaths,
 } from '../data';
 import type { PrototypeAction } from '../types';
 import { createJameelHomeStyles } from './styles';
-import { FaqVideoSection } from './organisms/FaqVideoSection';
+// import { FaqVideoSection } from './organisms/FaqVideoSection';
 import { HeroSection } from './organisms/HeroSection';
 import { JourneyTogether } from './organisms/JourneyTogether';
-import { MembershipContinuity } from './organisms/MembershipContinuity';
+// import { MembershipContinuity } from './organisms/MembershipContinuity';
 import { PeopleEcosystem } from './organisms/PeopleEcosystem';
 import { SolutionPaths } from './organisms/SolutionPaths';
 
@@ -79,12 +79,20 @@ export function JameelHomeScreen({ onAction, onBrandContextSelect }: JameelHomeS
             />
           ) : null}
           <JourneyTogether steps={journeySteps} styles={styles} />
-          <FaqVideoSection onAction={handleAction} styles={styles} videos={faqVideos} />
-          <MembershipContinuity
+          {/*
+            EV expert hub hidden by stakeholder request.
+            Restore this block together with the faqVideos import when the section comes back.
+            <FaqVideoSection onAction={handleAction} styles={styles} videos={faqVideos} />
+          */}
+          {/*
+            Membership hidden by stakeholder request.
+            Restore this block together with the membershipSignals import when the section comes back.
+            <MembershipContinuity
             onAction={handleAction}
             signals={membershipSignals}
             styles={styles}
-          />
+            />
+          */}
           <PeopleEcosystem onAction={handleAction} roles={peopleRoles} styles={styles} />
         </View>
       </ScrollView>

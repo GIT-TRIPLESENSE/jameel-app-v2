@@ -23,7 +23,7 @@ Jameel Motors governs structure and behavior. Zeekr and Geely are chromatic mode
 
 Invariant elements across all sections:
 
-- Mobile header: brand selector on the left, Jameel Motors logo centered, profile icon on the right.
+- Mobile header: brand selector on the left and Jameel Motors logo centered. The profile icon is intentionally hidden in the current iteration, with render code left commented for restoration.
 - Bottom navbar: same shape, same position, same states, same dimensions.
 - CTA: always white or black based on the background; never accent-colored primary CTAs.
 - Model card: vehicle image, favorite heart, title/price, metrics tray, dual action.
@@ -251,7 +251,7 @@ Mobile structure:
 - Side padding: `24px`.
 - Brand selector on the left: white `48px` button, `100px` radius, current label, chevron down, dark text and icon.
 - Jameel Motors logo centered: use official asset, do not recreate with text if the asset exists.
-- Account icon on the right: `32px` icon inside a minimum `44px` touch target, stroke `2px`.
+- Account/profile icon is intentionally hidden in the current iteration. If re-enabled, use a `32px` icon inside a minimum `44px` touch target, stroke `2px`.
 
 Colors:
 
@@ -437,17 +437,16 @@ First screen:
 
 Below hero:
 
-- Current Concept 2 Guide-Oriented architecture: primary hero CTA, vehicle choice, quiz entry point, EV journey path banners (`Before`, `During`, `After`) under the title `An ecosystem that always guides you`, knowledge-pill video stories, Membership continuity, and people behind the ecosystem.
+- Current visible Concept 2 Guide-Oriented architecture: primary hero CTA, vehicle choice, EV journey path banners (`Before`, `During`, `After`) under the title `An ecosystem that always guides you`, and people behind the ecosystem.
 - Home sections use a fixed `32px` vertical gap between each top-level section.
-- Sections must alternate visually through different component treatments: long photographic hero, two compact brand cards, a full-width quiz entry card, full-width attached journey banners, compact vertical story cards on the page background, dark Membership panel, and a petrol full-width people carousel for the network.
+- Sections must alternate visually through different component treatments: long photographic hero, two compact brand cards, full-width attached journey banners, and a petrol full-width people carousel for the network.
 - Do not create movement by disaligning cards. Card grids and stacked cards should stay aligned unless a product pattern explicitly requires otherwise.
-- Geely and Zeekr must appear immediately after the hero under the title `Our solution`, with no `Choose your first step` eyebrow. Use two side-by-side brand cards without visible internal CTAs. These cards use a neutral dark surface, the official brand logo at the top in a compact `24px`-high frame, a brand headline at `18px`, `12px` between logo and headline, and a large isolated vehicle image positioned absolutely at bottom-left so the vehicle front remains visible. Do not use lifestyle/photo backgrounds for these brand-choice cards. Follow them with a compact full-width guided banner before any long educational section. The guided entry is a white row with a light stroke, subtle lower shadow, no icon, title, short helper copy, and a right arrow, not an image card.
+- Geely and Zeekr must appear immediately after the hero under the title `Our solution`, with no `Choose your first step` eyebrow. Use two side-by-side brand cards without visible internal CTAs. These cards use a neutral dark surface, the official brand logo at the top in a compact `24px`-high frame, a brand headline at `18px`, `12px` between logo and headline, and a large isolated vehicle image positioned absolutely at bottom-left so the vehicle front remains visible. Do not use lifestyle/photo backgrounds for these brand-choice cards. The compact full-width guided quiz banner is intentionally hidden in the current Home iteration; keep its implementation commented so it can return without rebuilding the component.
 - In the journey path section, keep only the path banners beneath the title. Do not add extra explanatory copy or duplicate CTAs inside that section. Path banners are full-viewport width, square-edged, attached to each other, and use one unified Jameel Primary petrol fill. Separate banners with simple geometric angled shapes, not spacing, and keep the final banner bottom edge angled into the following page background. Each banner has a short label, one-line title, two-line subtitle, and the representative icon on the right.
 - Do not render the `Jameel as guide` media/storytelling section in the current Home iteration.
-- The knowledge-pill video story section sits directly below the EV journey ecosystem banners on the page background, without a petrol section fill. It has no yellow eyebrow; its title is `EV expert hub` and must stay contrast-safe on the light page background. Cards render as a horizontal stacked carousel: one central card is active, lateral cards remain partially visible behind it with parallax-style scale and slight rotation, and horizontal swipe changes the active card. Do not animate card-level opacity in this carousel; keep every rendered card fully opaque and darken lateral cards only through the internal image scrim.
-- Membership uses the supplied community image as a dark editorial background with no decorative icon and no `MEMBERSHIP` eyebrow. The card height is hug-content, not fixed: solid pale-yellow 32px tags (`Experience`, `Benefit`) sit above the strong white title with `8px` radius, Jameel petrol `#21424E` text, and an opaque much lighter yellow background derived from the Jameel accent. These are editorial tags, not filter chips, and must not use transparent fills. Keep all membership copy in English until localization is explicitly planned.
-- The network section must show people and roles, not coverage numbers. It sits after Membership inside a full-width Jameel petrol band, uses the global 20pt section heading, a contrast-safe text `Our network` CTA, and compact horizontal cards for Consultants, Dealers, and Customer care.
-- The knowledge section should not own the full-width petrol band in the current Home iteration. Its `EV expert hub` title sits on the page background, followed by a horizontal stacked carousel of compact vertical story cards. Cards should stay small and show only the problem-led title over the image.
+- The knowledge-pill video story section is intentionally hidden in the current Home iteration. When re-enabled, it sits directly below the EV journey ecosystem banners on the page background, without a petrol section fill. It has no yellow eyebrow; its title is `EV expert hub` and must stay contrast-safe on the light page background. Cards render as a horizontal stacked carousel: one central card is active, lateral cards remain partially visible behind it with parallax-style scale and slight rotation, and horizontal swipe changes the active card. Do not animate card-level opacity in this carousel; keep every rendered card fully opaque and darken lateral cards only through the internal image scrim.
+- Membership is intentionally hidden in the current Home iteration. When re-enabled, it uses the supplied community image as a dark editorial background with no decorative icon and no `MEMBERSHIP` eyebrow. The card height is hug-content, not fixed: solid pale-yellow 32px tags (`Experience`, `Benefit`) sit above the strong white title with `8px` radius, Jameel petrol `#21424E` text, and an opaque much lighter yellow background derived from the Jameel accent. These are editorial tags, not filter chips, and must not use transparent fills. Keep all membership copy in English until localization is explicitly planned.
+- The network section must show people and roles, not coverage numbers. It sits after the visible journey ecosystem section inside a full-width Jameel petrol band, uses the global 20pt section heading, a contrast-safe text `Our network` CTA, and compact horizontal cards for Consultants, Dealers, and Customer care.
 
 ### Zeekr Brand Section
 

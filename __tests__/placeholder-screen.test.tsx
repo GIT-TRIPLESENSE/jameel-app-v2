@@ -19,7 +19,7 @@ describe('IndexRoute', () => {
   });
 
   it('renders the Jameel Motors home prototype through i18n', async () => {
-    const { getByText, queryByText } = await render(
+    const { getByText, queryByLabelText, queryByText } = await render(
       <AppProviders>
         <IndexRoute />
       </AppProviders>,
@@ -27,6 +27,7 @@ describe('IndexRoute', () => {
 
     expect(getByText(i18n.t('jameelHome.hero.title'))).toBeTruthy();
     expect(getByText(i18n.t('jameelHome.solutions.title'))).toBeTruthy();
+    expect(queryByLabelText(i18n.t('jameelHome.header.profileLabel'))).toBeNull();
     expect(queryByText(i18n.t('navigation.bottom.home.label'))).toBeNull();
   });
 
