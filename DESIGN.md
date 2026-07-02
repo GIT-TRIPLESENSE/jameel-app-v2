@@ -317,6 +317,7 @@ Dimensions:
 - CTA radius `100px`.
 - Horizontal padding `24px`.
 - Font `16px`-`17px`, weight `700`.
+- Tertiary/text CTAs must include a trailing action icon, usually a chevron or arrow, in the same color as the label.
 - Active/tap: translateY `1px`, no layout change.
 - Disabled: preserve readability; do not drop below `4.5:1` for text. Prefer explicit text or an obvious non-clickable state.
 
@@ -439,14 +440,14 @@ Below hero:
 
 - Current visible Concept 2 Guide-Oriented architecture: primary hero CTA, vehicle choice, EV journey path banners (`Before`, `During`, `After`) under the title `An ecosystem that always guides you`, and people behind the ecosystem.
 - Home sections use a fixed `32px` vertical gap between each top-level section.
-- Sections must alternate visually through different component treatments: long photographic hero, two compact brand cards, full-width attached journey banners, and a petrol full-width people carousel for the network.
+- Sections must alternate visually through different component treatments: long photographic hero, two compact brand cards, full-width attached journey banners, and a neutral-background full-width people carousel for the network.
 - Do not create movement by disaligning cards. Card grids and stacked cards should stay aligned unless a product pattern explicitly requires otherwise.
 - Geely and Zeekr must appear immediately after the hero under the title `Our solution`, with no `Choose your first step` eyebrow. Use two side-by-side brand cards without visible internal CTAs. These cards use a neutral dark surface, the official brand logo at the top in a compact `24px`-high frame, a brand headline at `18px`, `12px` between logo and headline, and a large isolated vehicle image positioned absolutely at bottom-left so the vehicle front remains visible. Do not use lifestyle/photo backgrounds for these brand-choice cards. The compact full-width guided quiz banner is intentionally hidden in the current Home iteration; keep its implementation commented so it can return without rebuilding the component.
 - In the journey path section, keep only the path banners beneath the title. Do not add extra explanatory copy or duplicate CTAs inside that section. Path banners are full-viewport width, square-edged, attached to each other, and use one unified Jameel Primary petrol fill. Separate banners with simple geometric angled shapes, not spacing, and keep the final banner bottom edge angled into the following page background. Each banner has a short label, one-line title, two-line subtitle, and the representative icon on the right.
 - Do not render the `Jameel as guide` media/storytelling section in the current Home iteration.
 - The knowledge-pill video story section is intentionally hidden in the current Home iteration. When re-enabled, it sits directly below the EV journey ecosystem banners on the page background, without a petrol section fill. It has no yellow eyebrow; its title is `EV expert hub` and must stay contrast-safe on the light page background. Cards render as a horizontal stacked carousel: one central card is active, lateral cards remain partially visible behind it with parallax-style scale and slight rotation, and horizontal swipe changes the active card. Do not animate card-level opacity in this carousel; keep every rendered card fully opaque and darken lateral cards only through the internal image scrim.
 - Membership is intentionally hidden in the current Home iteration. When re-enabled, it uses the supplied community image as a dark editorial background with no decorative icon and no `MEMBERSHIP` eyebrow. The card height is hug-content, not fixed: solid pale-yellow 32px tags (`Experience`, `Benefit`) sit above the strong white title with `8px` radius, Jameel petrol `#21424E` text, and an opaque much lighter yellow background derived from the Jameel accent. These are editorial tags, not filter chips, and must not use transparent fills. Keep all membership copy in English until localization is explicitly planned.
-- The network section must show people and roles, not coverage numbers. It sits after the visible journey ecosystem section inside a full-width Jameel petrol band, uses the global 20pt section heading, a contrast-safe text `Our network` CTA, and compact horizontal cards for Consultants, Dealers, and Customer care.
+- The network section must show people and roles, not coverage numbers. It sits after the visible journey ecosystem section on the neutral page background, uses the global 20pt section heading, a black text `Our network` CTA with a trailing chevron icon, and compact horizontal image cards for Consultants, Dealers, and Customer care.
 
 ### Zeekr Brand Section
 

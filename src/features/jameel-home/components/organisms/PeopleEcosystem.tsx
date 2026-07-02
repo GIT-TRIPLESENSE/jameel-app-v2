@@ -31,7 +31,7 @@ export function PeopleEcosystem({ onAction, roles, styles }: PeopleEcosystemProp
             {t('jameelHome.people.cta')}
           </Text>
           <ChevronRight
-            color={styles.meta.darkIconColor.color}
+            color={styles.meta.lightIconColor.color}
             size={styles.meta.iconSmall.width}
             strokeWidth={styles.meta.iconStroke.width}
           />
