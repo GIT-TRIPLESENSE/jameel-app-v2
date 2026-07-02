@@ -6,19 +6,13 @@ import { jameelHomeHeroImage } from '../../data';
 import { PrototypeButton } from '../atoms/PrototypeButton';
 import { JameelHeader } from '../molecules/JameelHeader';
 import type { JameelHomeStyles } from '../styles';
-import type { BrandContextSelection } from '@/components';
 
 type HeroSectionProps = {
-  onBrandContextSelect?: (selection: BrandContextSelection) => void;
   onBrandChoicePress: () => void;
   styles: JameelHomeStyles;
 };
 
-export function HeroSection({
-  onBrandChoicePress,
-  onBrandContextSelect,
-  styles,
-}: HeroSectionProps) {
+export function HeroSection({ onBrandChoicePress, styles }: HeroSectionProps) {
   const { t } = useTranslation();
 
   return (
@@ -37,7 +31,7 @@ export function HeroSection({
         start={styles.meta.heroPetrolScrim.start}
         style={styles.heroScrim}
       />
-      <JameelHeader onBrandContextSelect={onBrandContextSelect} onDark styles={styles} />
+      <JameelHeader onDark styles={styles} />
       <View style={styles.heroContent}>
         <Text style={styles.heroTitle}>{t('jameelHome.hero.title')}</Text>
         <Text style={styles.heroBody}>{t('jameelHome.hero.body')}</Text>

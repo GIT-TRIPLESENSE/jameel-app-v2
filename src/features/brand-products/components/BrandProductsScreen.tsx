@@ -17,11 +17,16 @@ import { createBrandProductsStyles } from './styles';
 type BrandProductsScreenProps = {
   brandId: BrandId;
   onBrandContextSelect?: (selection: BrandContextSelection) => void;
+  onJameelHomePress?: () => void;
 };
 
 const defaultFilterId: VehicleFilterId = 'vehicles';
 
-export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProductsScreenProps) {
+export function BrandProductsScreen({
+  brandId,
+  onBrandContextSelect,
+  onJameelHomePress,
+}: BrandProductsScreenProps) {
   const { theme } = useAppTheme();
   const { width } = useWindowDimensions();
   const [filterState, setFilterState] = useState<{
@@ -63,6 +68,7 @@ export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProd
           <BrandProductsHeader
             brandId={brandId}
             onBrandContextSelect={onBrandContextSelect}
+            onJameelHomePress={onJameelHomePress}
             selectorLabelKey={brandTheme.selectorLabelKey}
             styles={styles}
           />

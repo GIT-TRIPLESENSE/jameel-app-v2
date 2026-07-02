@@ -15,14 +15,24 @@ export default function BrandProductsRoute() {
 
   const handleBrandContextSelect = (selection: BrandContextSelection) => {
     if (selection === 'jameel') {
-      router.push('/');
+      router.replace('/');
       return;
     }
 
-    router.push(getBrandProductsRoute(selection));
+    if (selection !== brandParam) {
+      router.replace(getBrandProductsRoute(selection));
+    }
+  };
+
+  const handleJameelHomePress = () => {
+    router.replace('/');
   };
 
   return (
-    <BrandProductsScreen brandId={brandParam} onBrandContextSelect={handleBrandContextSelect} />
+    <BrandProductsScreen
+      brandId={brandParam}
+      onBrandContextSelect={handleBrandContextSelect}
+      onJameelHomePress={handleJameelHomePress}
+    />
   );
 }

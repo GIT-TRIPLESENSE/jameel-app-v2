@@ -1,5 +1,5 @@
 import { Check, ChevronDown } from 'lucide-react-native';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Pressable,
@@ -39,6 +39,7 @@ const brandContextOptions: BrandContextOption[] = [
 
 type BrandContextMenuProps = {
   iconColor: string;
+  menuAlignment?: 'left' | 'right';
   onSelect?: (selection: BrandContextSelection) => void;
   pressedStyle?: StyleProp<ViewStyle>;
   selectedId: BrandContextSelection;
@@ -51,6 +52,7 @@ type BrandContextMenuProps = {
 
 export function BrandContextMenu({
   iconColor,
+  menuAlignment = 'left',
   onSelect,
   pressedStyle,
   selectedId,
@@ -63,11 +65,31 @@ export function BrandContextMenu({
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [hoveredOptionId, setHoveredOptionId] = useState<BrandContextSelection | null>(null);
+  const handledSelectionRef = useRef<BrandContextSelection | null>(null);
   const styles = useMemo(() => createBrandContextMenuStyles(theme), [theme]);
 
   const handleSelect = (selection: BrandContextSelection) => {
+    if (handledSelectionRef.current === selection) {
+      return;
+    }
+
+    handledSelectionRef.current = selection;
     setIsOpen(false);
+    setHoveredOptionId(null);
     onSelect?.(selection);
+  };
+
+  const handleSelectorPress = () => {
+    handledSelectionRef.current = null;
+
+    setIsOpen((current) => {
+      if (current) {
+        setHoveredOptionId(null);
+      }
+
+      return !current;
+    });
   };
 
   return (
@@ -78,7 +100,7 @@ export function BrandContextMenu({
         accessibilityRole="button"
         accessibilityState={{ expanded: isOpen }}
         hitSlop={selectorHitSlop}
-        onPress={() => setIsOpen((current) => !current)}
+        onPress={handleSelectorPress}
         style={({ pressed }) => [selectorStyle, pressed && pressedStyle]}
         testID="brand-context-selector"
       >
@@ -91,11 +113,12 @@ export function BrandContextMenu({
       {isOpen ? (
         <View
           accessibilityLabel={t('brandSwitcher.menuLabel')}
-          style={styles.menu}
+          style={[styles.menu, menuAlignment === 'right' ? styles.menuRight : styles.menuLeft]}
           testID="brand-context-menu"
         >
           {brandContextOptions.map((option) => {
             const isSelected = option.id === selectedId;
+            const isHovered = option.id === hoveredOptionId;
             const optionLabel = t(option.labelKey);
 
             return (
@@ -106,10 +129,19 @@ export function BrandContextMenu({
                 accessibilityRole="button"
                 accessibilityState={{ selected: isSelected }}
                 key={option.id}
+                onHoverIn={() => setHoveredOptionId(option.id)}
+                onHoverOut={() =>
+                  setHoveredOptionId((currentOptionId) =>
+                    currentOptionId === option.id ? null : currentOptionId,
+                  )
+                }
                 onPress={() => handleSelect(option.id)}
+                onPressIn={() => handleSelect(option.id)}
                 style={({ pressed }) => [
                   styles.option,
+                  isHovered && styles.optionHovered,
                   isSelected && styles.optionSelected,
+                  isHovered && isSelected && styles.optionSelectedHovered,
                   pressed && styles.optionPressed,
                 ]}
               >
@@ -136,37 +168,51 @@ function createBrandContextMenuStyles(theme: AppTheme) {
   return StyleSheet.create({
     container: {
       position: 'relative',
-      zIndex: 20,
-      elevation: 20,
+      zIndex: 50,
+      elevation: 50,
+      overflow: 'visible',
     },
     menu: {
       ...theme.shadow.soft,
       position: 'absolute',
       top: theme.layout.headerControlMinHeight + theme.spacing.sm,
-      left: theme.spacing.none,
-      minWidth: theme.layout.brandCardMinHeight - theme.spacing.xxl,
+      width: theme.layout.headerBrandSelectorWidth + theme.spacing.xl,
       borderRadius: theme.radii.lg,
       backgroundColor: theme.colors.surface,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: theme.colors.border,
       padding: theme.spacing.md,
       gap: theme.spacing.sm,
-      zIndex: 30,
-      elevation: 30,
+      zIndex: 60,
+      elevation: 60,
+    },
+    menuLeft: {
+      left: theme.spacing.none,
+    },
+    menuRight: {
+      right: theme.spacing.none,
     },
     option: {
-      minHeight: theme.layout.filterChipMinHeight,
+      minHeight: theme.layout.headerControlMinHeight,
       borderRadius: theme.radii.pill,
-      paddingHorizontal: theme.spacing.base,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: theme.colors.surface,
+      paddingHorizontal: theme.spacing.md,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      gap: theme.spacing.base,
+      gap: theme.spacing.md,
+    },
+    optionHovered: {
+      backgroundColor: theme.colors.surfaceSoft,
+      borderColor: theme.colors.border,
     },
     optionSelected: {
       backgroundColor: theme.colors.surfaceMuted,
-      borderWidth: StyleSheet.hairlineWidth,
       borderColor: theme.colors.border,
+    },
+    optionSelectedHovered: {
+      borderColor: theme.colors.jameel.primary,
     },
     optionPressed: {
       opacity: theme.opacity.pressed,

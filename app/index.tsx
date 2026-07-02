@@ -1,6 +1,5 @@
 import { useRouter } from 'expo-router';
 
-import type { BrandContextSelection } from '@/components';
 import { getBrandProductsRoute } from '@/features/brand-products';
 import { JameelHomeScreen } from '@/features/jameel-home';
 import type { PrototypeAction } from '@/features/jameel-home/types';
@@ -25,14 +24,6 @@ function getRouteForHomeAction(action: PrototypeAction) {
   return null;
 }
 
-function getRouteForBrandContextSelection(selection: BrandContextSelection) {
-  if (selection === 'jameel') {
-    return '/' as const;
-  }
-
-  return getBrandProductsRoute(selection);
-}
-
 export default function IndexRoute() {
   const router = useRouter();
 
@@ -44,11 +35,5 @@ export default function IndexRoute() {
     }
   };
 
-  const handleBrandContextSelect = (selection: BrandContextSelection) => {
-    router.push(getRouteForBrandContextSelection(selection));
-  };
-
-  return (
-    <JameelHomeScreen onAction={handleAction} onBrandContextSelect={handleBrandContextSelect} />
-  );
+  return <JameelHomeScreen onAction={handleAction} />;
 }

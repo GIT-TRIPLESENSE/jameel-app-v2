@@ -23,7 +23,7 @@ Jameel Motors governs structure and behavior. Zeekr and Geely are chromatic mode
 
 Invariant elements across all sections:
 
-- Mobile header: brand selector on the left and Jameel Motors logo centered. The profile icon is intentionally hidden in the current iteration, with render code left commented for restoration.
+- Mobile header: Jameel Motors logo centered. On the Jameel Home hero, do not render the brand selector chip. On brand PLP pages, use a left back arrow to the Jameel Home, the centered logo, and the brand selector chip on the right. The profile icon is intentionally hidden in the current iteration, with render code left commented for restoration.
 - Bottom navbar: same shape, same position, same states, same dimensions.
 - CTA: always white or black based on the background; never accent-colored primary CTAs.
 - Model card: vehicle image, favorite heart, title/price, metrics tray, dual action.
@@ -243,27 +243,30 @@ Shadows:
 
 ## 8. Header
 
-The header is invariant across all areas.
+The header keeps the centered Jameel Motors logo across all areas, while side controls vary by surface.
 
 Mobile structure:
 
 - Minimum header area height: `72px` + safe area.
 - Side padding: `24px`.
-- Brand selector on the left: white `48px` button, `100px` radius, current label, chevron down, dark text and icon.
+- Brand selector on brand pages: white `48px` button, `100px` radius, current label, chevron down, dark text and icon. On brand PLP pages it sits on the right, and its compact contextual menu is right-aligned to the selector so the dropdown never exits the mobile frame or dominates the header.
+- Brand PLP back control on the left: icon-only arrow button inside a `44px` touch target, dark icon on light brand pages, returning to the Jameel Home.
 - Jameel Motors logo centered: use official asset, do not recreate with text if the asset exists.
 - Account/profile icon is intentionally hidden in the current iteration. If re-enabled, use a `32px` icon inside a minimum `44px` touch target, stroke `2px`.
 
 Colors:
 
-- On dark hero or dark image: logo and icons `#FFFFFF`; the brand selector remains a white 48px button with dark text and icon.
+- On dark hero or dark image: logo and icons `#FFFFFF`; the Jameel Home hero does not render the brand selector chip.
 - On light brand pages: logo and icons `#111111`; the brand selector remains the same white 48px button with dark text and icon.
 - Do not color the header with Zeekr or Geely accents. The brand changes in the content, not in the structure.
 
 Behavior:
 
-- Header remains stable when changing brand.
-- The selector opens a compact contextual menu with `Jameel`, `Zeekr`, and `Geely`; the current page context must be visually selected with background treatment and a check icon.
-- Selecting `Jameel` returns to the umbrella Home. Selecting `Zeekr` or `Geely` preserves the current section when possible: Products stays in Products, Network stays in Network, and the Jameel Home routes to the selected brand Products page.
+- Header remains stable when changing brand inside the same surface.
+- The selector opens a compact contextual menu with `Jameel`, `Zeekr`, and `Geely`; the current page context must be visually selected with background treatment and a check icon. The selector is hidden on the Jameel Home header.
+- On desktop/web, contextual menu rows must show a visible hover state before click, using a subtle surface change and border treatment without shifting row size.
+- The brand selector menu must render above hero/headline content and remain fully clickable on both brand PLPs.
+- Selecting `Jameel` returns to the umbrella Home. Selecting `Zeekr` or `Geely` preserves the current section when possible: Products switches directly between `/brands/zeekr/products` and `/brands/geely/products`, Network stays in Network, and the Jameel Home routes to the selected brand Products page.
 - The brand menu must have items at least `44px` high, with selected state shown by check or weight, not color alone.
 
 ## 9. Bottom Navbar

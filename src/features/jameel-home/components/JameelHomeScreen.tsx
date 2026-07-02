@@ -2,7 +2,6 @@ import { useMemo, useRef } from 'react';
 import { ScrollView, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import type { BrandContextSelection } from '@/components';
 import { useAppTheme } from '@/theme';
 
 import {
@@ -24,10 +23,9 @@ import { SolutionPaths } from './organisms/SolutionPaths';
 
 type JameelHomeScreenProps = {
   onAction?: (action: PrototypeAction) => void;
-  onBrandContextSelect?: (selection: BrandContextSelection) => void;
 };
 
-export function JameelHomeScreen({ onAction, onBrandContextSelect }: JameelHomeScreenProps) {
+export function JameelHomeScreen({ onAction }: JameelHomeScreenProps) {
   const { theme } = useAppTheme();
   const { width } = useWindowDimensions();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -63,11 +61,7 @@ export function JameelHomeScreen({ onAction, onBrandContextSelect }: JameelHomeS
             heroHeightRef.current = event.nativeEvent.layout.height;
           }}
         >
-          <HeroSection
-            onBrandChoicePress={handleBrandChoiceAnchor}
-            onBrandContextSelect={onBrandContextSelect}
-            styles={styles}
-          />
+          <HeroSection onBrandChoicePress={handleBrandChoiceAnchor} styles={styles} />
         </View>
         <View style={styles.mainContent}>
           {quizPath ? (

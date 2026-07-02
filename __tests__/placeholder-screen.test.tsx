@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 
 import IndexRoute from '@app/index';
@@ -27,31 +27,8 @@ describe('IndexRoute', () => {
 
     expect(getByText(i18n.t('jameelHome.hero.title'))).toBeTruthy();
     expect(getByText(i18n.t('jameelHome.solutions.title'))).toBeTruthy();
+    expect(queryByLabelText(i18n.t('jameelHome.header.selectorLabel'))).toBeNull();
     expect(queryByLabelText(i18n.t('jameelHome.header.profileLabel'))).toBeNull();
     expect(queryByText(i18n.t('navigation.bottom.home.label'))).toBeNull();
-  });
-
-  it('opens the brand context menu from the Jameel home header', async () => {
-    const { findByLabelText, getByLabelText } = await render(
-      <AppProviders>
-        <IndexRoute />
-      </AppProviders>,
-    );
-
-    fireEvent.press(getByLabelText(i18n.t('jameelHome.header.selectorLabel')));
-    fireEvent.press(
-      await findByLabelText(
-        i18n.t('brandSwitcher.optionLabel', {
-          brand: i18n.t('brandSwitcher.options.zeekr'),
-        }),
-      ),
-    );
-
-    expect(mockPush).toHaveBeenCalledWith({
-      pathname: '/brands/[brand]/products',
-      params: {
-        brand: 'zeekr',
-      },
-    });
   });
 });

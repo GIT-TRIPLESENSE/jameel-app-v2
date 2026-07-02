@@ -47,6 +47,7 @@ export const en = {
   },
   brandProducts: {
     header: {
+      homeLabel: 'Back to Jameel home',
       selectorLabel: 'Open brand selector',
       profileLabel: 'Open guest menu',
     },

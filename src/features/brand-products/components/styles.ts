@@ -37,6 +37,9 @@ export function createBrandProductsStyles(
       },
       header: {
         position: 'relative',
+        zIndex: 40,
+        elevation: 40,
+        overflow: 'visible',
         minHeight: theme.layout.headerMinHeight,
         flexDirection: 'row',
         alignItems: 'center',
@@ -63,6 +66,13 @@ export function createBrandProductsStyles(
         fontFamily: theme.typography.fontFamilies.bold,
         fontSize: theme.typography.sizes.body,
         lineHeight: theme.typography.lineHeights.body,
+      },
+      headerBackButton: {
+        zIndex: theme.layout.screenFlex,
+        width: theme.layout.headerControlMinHeight,
+        height: theme.layout.headerControlMinHeight,
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       logoMark: {
         position: 'absolute',

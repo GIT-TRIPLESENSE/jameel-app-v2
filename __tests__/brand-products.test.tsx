@@ -27,6 +27,7 @@ describe('BrandProductsScreen', () => {
     expect(await findByLabelText(i18n.t('brandProducts.filters.services'))).toBeTruthy();
     expect(queryByText('Models')).toBeNull();
     expect(queryByLabelText('All')).toBeNull();
+    expect(await findByLabelText(i18n.t('brandProducts.header.homeLabel'))).toBeTruthy();
     expect(queryByLabelText(i18n.t('brandProducts.header.profileLabel'))).toBeNull();
     expect(queryByText(i18n.t('brandProducts.vehicles.geelyEx5Pro.summary'))).toBeNull();
   });
@@ -81,5 +82,18 @@ describe('BrandProductsScreen', () => {
     );
 
     expect(onBrandContextSelect).toHaveBeenCalledWith('jameel');
+  });
+
+  it('uses the header arrow to return to the Jameel home', async () => {
+    const onJameelHomePress = jest.fn();
+    const { findByLabelText } = await render(
+      <AppProviders>
+        <BrandProductsScreen brandId="zeekr" onJameelHomePress={onJameelHomePress} />
+      </AppProviders>,
+    );
+
+    fireEvent.press(await findByLabelText(i18n.t('brandProducts.header.homeLabel')));
+
+    expect(onJameelHomePress).toHaveBeenCalledTimes(1);
   });
 });

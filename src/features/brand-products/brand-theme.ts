@@ -8,12 +8,7 @@ export function isBrandId(value: unknown): value is BrandId {
 }
 
 export function getBrandProductsRoute(brandId: BrandId) {
-  return {
-    pathname: '/brands/[brand]/products',
-    params: {
-      brand: brandId,
-    },
-  } as const;
+  return `/brands/${brandId}/products` as const;
 }
 
 export function createBrandProductsTheme(theme: AppTheme, brandId: BrandId): BrandProductsTheme {
