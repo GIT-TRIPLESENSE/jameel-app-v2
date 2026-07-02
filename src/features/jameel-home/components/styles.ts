@@ -80,7 +80,7 @@ export function createJameelHomeStyles(
         borderRadius: theme.radii.cta,
         backgroundColor: theme.colors.ctaLight,
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: theme.colors.border,
+        borderColor: theme.colors.ctaLight,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -165,7 +165,7 @@ export function createJameelHomeStyles(
         width: '100%',
         maxWidth: theme.layout.mobileContentMaxWidth,
         alignSelf: 'center',
-        gap: theme.spacing.xxl,
+        gap: theme.spacing.xl,
         paddingHorizontal: pagePadding,
         paddingTop: theme.spacing.xl,
         paddingBottom: theme.spacing.xxxl,
@@ -309,14 +309,14 @@ export function createJameelHomeStyles(
         alignItems: 'flex-start',
         paddingHorizontal: theme.spacing.base,
         paddingVertical: theme.spacing.md + theme.spacing.sm,
-        gap: theme.spacing.base,
+        gap: theme.spacing.md + theme.spacing.sm,
         zIndex: theme.layout.screenFlex,
       },
       brandLogoImage: {
         width: isCompact
           ? theme.layout.headerLogoWidth
           : theme.layout.headerLogoWidth + theme.spacing.lg,
-        height: theme.layout.headerControlMinHeight,
+        height: theme.spacing.lg,
       },
       brandTitleGroup: {
         gap: theme.spacing.sm,
@@ -324,13 +324,13 @@ export function createJameelHomeStyles(
       brandCardTitle: {
         color: theme.colors.textOnDark,
         fontFamily: theme.typography.fontFamilies.bold,
-        fontSize: theme.typography.sizes.cardTitle,
-        lineHeight: theme.typography.lineHeights.cardTitle,
+        fontSize: theme.typography.sizes.titleMedium,
+        lineHeight: theme.typography.lineHeights.titleMedium,
       },
       brandVehicleImage: {
         position: 'absolute',
-        right: isCompact ? -(theme.spacing.xxxl + theme.spacing.xl) : -theme.spacing.xxxl,
-        bottom: isCompact ? -theme.spacing.lg : -theme.spacing.md,
+        left: -theme.spacing.xl,
+        bottom: isCompact ? -theme.spacing.base : -theme.spacing.sm,
         width: isCompact
           ? theme.layout.brandCardMinHeight + theme.spacing.lg
           : theme.layout.brandCardMinHeight + theme.spacing.xxxl,
@@ -414,15 +414,10 @@ export function createJameelHomeStyles(
       journeyStepLast: {
         borderBottomLeftRadius: theme.radii.none,
         borderBottomRightRadius: theme.radii.none,
+        paddingBottom: theme.spacing.xxxl,
       },
       journeyStepPrimary: {
         backgroundColor: theme.colors.jameel.primary,
-      },
-      journeyStepSoft: {
-        backgroundColor: theme.colors.jameel.petrolSoft,
-      },
-      journeyStepDeep: {
-        backgroundColor: theme.colors.jameel.petrolDeep,
       },
       journeySeparatorShape: {
         position: 'absolute',
@@ -432,11 +427,11 @@ export function createJameelHomeStyles(
         height: theme.spacing.xxl,
         transform: [{ rotate: '-3deg' }],
       },
-      journeySeparatorToSoft: {
-        backgroundColor: theme.colors.jameel.petrolSoft,
+      journeySeparatorToPrimary: {
+        backgroundColor: theme.colors.jameel.primary,
       },
-      journeySeparatorToDeep: {
-        backgroundColor: theme.colors.jameel.petrolDeep,
+      journeySeparatorToPage: {
+        backgroundColor: theme.colors.background,
       },
       journeyIcon: {
         width: theme.layout.headerControlMinHeight,

@@ -45,13 +45,13 @@ export function createDealerNetworkStyles(
       },
       brandSelector: {
         zIndex: theme.layout.screenFlex,
-        minHeight: theme.layout.headerControlMinHeight,
+        height: theme.layout.ctaMinHeight,
         width: theme.layout.headerBrandSelectorWidth,
         paddingHorizontal: theme.spacing.md,
-        borderRadius: theme.radii.pill,
-        backgroundColor: theme.colors.glassFillStrong,
+        borderRadius: theme.radii.cta,
+        backgroundColor: theme.colors.ctaLight,
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: theme.colors.border,
+        borderColor: theme.colors.ctaLight,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -423,6 +423,10 @@ export function createDealerNetworkStyles(
       },
       iconMedium: {
         width: theme.icon.md,
+        strokeWidth: theme.icon.stroke,
+      },
+      iconLarge: {
+        width: theme.icon.lg,
         strokeWidth: theme.icon.stroke,
       },
     },

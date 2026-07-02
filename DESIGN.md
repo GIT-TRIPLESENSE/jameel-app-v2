@@ -144,7 +144,7 @@ Minimum target: WCAG 2.2 AA.
 - `#FFFFFF` on `#E8432E`: ratio 3.98, do not use for normal text; allowed only for large text or very short chips with non-critical labels. Prefer `#111111` on `#E8432E`.
 - `#E8432E` on `#232323`: ratio 3.95, use for large metrics or UI, not body copy.
 - `#6C737C` on `#DEDFE2`: ratio 3.60, use only for large text, non-critical labels, or non-text elements. Geely body text must use `#171717`.
-- `#0090D6` on `#DEDFE2`: ratio 2.64, forbidden for text. Use Geely blue on dark card `#171717`, as fill with `#111111` text, or on white surfaces only for large text if contrast remains at least `3:1`.
+- `#0090D6` on `#DEDFE2`: ratio 2.64, avoid for body text and small labels. Current PLP direction uses it only for the large, bold `Geely,` brand word in the headline.
 
 ## 5. Typography
 
@@ -224,7 +224,7 @@ Use auto-layout/Flex/Grid with fixed tokens. Do not calculate spacing by eye.
 
 Radius:
 
-- Standard element radius: `16px` for cards, panels, filters, selectors, media, nav containers, badges, icon frames, and controls.
+- Standard element radius: `16px` for cards, panels, filters, selectors, media, badges, icon frames, controls, and the active bottom-navbar tab. The bottom navbar container is fully rounded.
 - Tag radius: `8px` for non-interactive editorial tags, such as Membership `Experience` and `Benefit`.
 - CTA radius: `100px` for primary and secondary CTAs, including model-card CTAs, detail CTAs, hero CTAs, Membership CTA, and compact play/action CTAs.
 - Square-edged full-width bands may use `0px` only when the section is intentionally edge-to-edge, such as attached journey banners.
@@ -249,14 +249,14 @@ Mobile structure:
 
 - Minimum header area height: `72px` + safe area.
 - Side padding: `24px`.
-- Brand selector on the left: visible chip `32px` high, `16px` radius, current label, chevron down, with extra touch area when needed.
+- Brand selector on the left: white `48px` button, `100px` radius, current label, chevron down, dark text and icon.
 - Jameel Motors logo centered: use official asset, do not recreate with text if the asset exists.
-- Account icon on the right: minimum touch target `44px`, stroke `2px`.
+- Account icon on the right: `32px` icon inside a minimum `44px` touch target, stroke `2px`.
 
 Colors:
 
-- On dark hero or dark image: logo and icons `#FFFFFF`; the Home hero `jameel` selector is a white 48px button with dark text and icon.
-- On light brand pages: logo and icons `#111111`; selector `rgba(255,255,255,0.62)` or `rgba(17,17,17,0.06)` with `#111111` text.
+- On dark hero or dark image: logo and icons `#FFFFFF`; the brand selector remains a white 48px button with dark text and icon.
+- On light brand pages: logo and icons `#111111`; the brand selector remains the same white 48px button with dark text and icon.
 - Do not color the header with Zeekr or Geely accents. The brand changes in the content, not in the structure.
 
 Behavior:
@@ -273,15 +273,17 @@ The navbar is invariant across all areas.
 Structure:
 
 - Fixed bottom position, above safe area.
-- Rounded container `76px`-`84px` high, radius `16px`.
+- Rounded container `76px`-`84px` high, full rounded radius.
 - `#FFFFFF` background with soft shadow.
 - Maximum 5 items.
-- Each item has a line icon above and label below.
+- Items are spaced by `12px` inside the navbar.
+- Each item has a `24px` line icon above and label below.
 - Minimum touch target `44px`.
 
 Active state:
 
 - Active item inside dark `#111111` rounded 16px control or brand primary dark.
+- The active control must be wide enough for the longest nav label, including `Our products`, without clipping.
 - Active icon and label `#FFFFFF`.
 - Inactive items use `#111111` on white navbar.
 - Do not use accent as the fill for the main active tab; accents stay in brand content.
@@ -436,10 +438,11 @@ First screen:
 Below hero:
 
 - Current Concept 2 Guide-Oriented architecture: primary hero CTA, vehicle choice, quiz entry point, EV journey path banners (`Before`, `During`, `After`) under the title `An ecosystem that always guides you`, knowledge-pill video stories, Membership continuity, and people behind the ecosystem.
+- Home sections use a fixed `32px` vertical gap between each top-level section.
 - Sections must alternate visually through different component treatments: long photographic hero, two compact brand cards, a full-width quiz entry card, full-width attached journey banners, compact vertical story cards on the page background, dark Membership panel, and a petrol full-width people carousel for the network.
 - Do not create movement by disaligning cards. Card grids and stacked cards should stay aligned unless a product pattern explicitly requires otherwise.
-- Geely and Zeekr must appear immediately after the hero as two side-by-side brand cards without visible internal CTAs. These cards use a neutral dark surface, the official brand logo at the top, an accent headline, and a large isolated vehicle image anchored low in the card. Do not use lifestyle/photo backgrounds for these brand-choice cards. Follow them with a compact full-width guided banner before any long educational section. The guided entry is a white row with a light stroke, subtle lower shadow, no icon, title, short helper copy, and a right arrow, not an image card.
-- In the journey path section, keep only the path banners beneath the title. Do not add extra explanatory copy or duplicate CTAs inside that section. Path banners are full-viewport width, square-edged, attached to each other, and use Jameel Primary, Petrol Soft, and Petrol Deep. Separate banners with simple geometric angled shapes, not spacing. Each banner has a short label, one-line title, two-line subtitle, and the representative icon on the right.
+- Geely and Zeekr must appear immediately after the hero under the title `Our solution`, with no `Choose your first step` eyebrow. Use two side-by-side brand cards without visible internal CTAs. These cards use a neutral dark surface, the official brand logo at the top in a compact `24px`-high frame, a brand headline at `18px`, `12px` between logo and headline, and a large isolated vehicle image positioned absolutely at bottom-left so the vehicle front remains visible. Do not use lifestyle/photo backgrounds for these brand-choice cards. Follow them with a compact full-width guided banner before any long educational section. The guided entry is a white row with a light stroke, subtle lower shadow, no icon, title, short helper copy, and a right arrow, not an image card.
+- In the journey path section, keep only the path banners beneath the title. Do not add extra explanatory copy or duplicate CTAs inside that section. Path banners are full-viewport width, square-edged, attached to each other, and use one unified Jameel Primary petrol fill. Separate banners with simple geometric angled shapes, not spacing, and keep the final banner bottom edge angled into the following page background. Each banner has a short label, one-line title, two-line subtitle, and the representative icon on the right.
 - Do not render the `Jameel as guide` media/storytelling section in the current Home iteration.
 - The knowledge-pill video story section sits directly below the EV journey ecosystem banners on the page background, without a petrol section fill. It has no yellow eyebrow; its title is `EV expert hub` and must stay contrast-safe on the light page background. Cards render as a horizontal stacked carousel: one central card is active, lateral cards remain partially visible behind it with parallax-style scale and slight rotation, and horizontal swipe changes the active card. Do not animate card-level opacity in this carousel; keep every rendered card fully opaque and darken lateral cards only through the internal image scrim.
 - Membership uses the supplied community image as a dark editorial background with no decorative icon and no `MEMBERSHIP` eyebrow. The card height is hug-content, not fixed: solid pale-yellow 32px tags (`Experience`, `Benefit`) sit above the strong white title with `8px` radius, Jameel petrol `#21424E` text, and an opaque much lighter yellow background derived from the Jameel accent. These are editorial tags, not filter chips, and must not use transparent fills. Keep all membership copy in English until localization is explicitly planned.
@@ -451,8 +454,8 @@ Below hero:
 - Background `#F1EFEC`.
 - Stable Jameel Motors header.
 - Headline: `Zeekr,` in `#E8432E`, rest `#232323`.
-- Section label: `Models`.
-- Top chips: `All`, `Models`, `Services`; active Zeekr chip uses the Zeekr accent.
+- Do not render a separate `Models` section label between headline and chips.
+- Top chips: `Vehicles`, `Services`; `Vehicles` is selected by default and sits `16px` below the headline. Active Zeekr chip uses the Zeekr accent with white text.
 - Zeekr dark model card `#232323`, metrics in red accent.
 - Metrics tray and small data panels can use controlled glass.
 - Dark service card with red iconography.
@@ -462,9 +465,9 @@ Below hero:
 
 - Background `#DEDFE2`.
 - Stable Jameel Motors header.
-- Headline: `Geely,` in `#0090D6` only if placed on a surface with sufficient contrast; on `#DEDFE2` blue does not pass for text, so prefer a lighter surface, dark backing, or primary text and reserve blue for underline/fill.
-- Section label: `Modelli`.
-- Top chips: `All`, `Models`, `Services`; active Geely chip uses Geely accent with dark text for AA.
+- Headline: `Geely,` in brand accent `#0090D6`; rest of the title remains primary text.
+- Do not render a separate `Models` section label between headline and chips.
+- Top chips: `Vehicles`, `Services`; `Vehicles` is selected by default and sits `16px` below the headline. Active Geely chip uses Geely accent with dark text for AA.
 - Geely dark model card `#171717`, metrics in blue accent.
 - Metrics tray and small data panels can use controlled glass.
 - Dark service card with blue iconography.

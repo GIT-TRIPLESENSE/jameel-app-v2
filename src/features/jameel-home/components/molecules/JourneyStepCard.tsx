@@ -14,27 +14,18 @@ type JourneyStepCardProps = {
 export function JourneyStepCard({ index, isLast, step, styles }: JourneyStepCardProps) {
   const { t } = useTranslation();
   const Icon = step.icon;
-  const cardStyle = {
-    before: styles.journeyStepPrimary,
-    during: styles.journeyStepSoft,
-    after: styles.journeyStepDeep,
-  }[step.id];
-  const separatorStyle = {
-    before: styles.journeySeparatorToSoft,
-    during: styles.journeySeparatorToDeep,
-    after: undefined,
-  }[step.id];
+  const separatorStyle = isLast ? styles.journeySeparatorToPage : styles.journeySeparatorToPrimary;
 
   return (
     <View
       style={[
         styles.journeyStep,
-        cardStyle,
+        styles.journeyStepPrimary,
         index === 0 && styles.journeyStepFirst,
         isLast && styles.journeyStepLast,
       ]}
     >
-      {!isLast ? <View style={[styles.journeySeparatorShape, separatorStyle]} /> : null}
+      <View style={[styles.journeySeparatorShape, separatorStyle]} />
       <View style={styles.journeyCopy}>
         <Text numberOfLines={1} style={styles.journeyLabel}>
           {t(step.labelKey)}

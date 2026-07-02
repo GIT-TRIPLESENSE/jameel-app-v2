@@ -53,8 +53,8 @@ export function DealerNetworkHeader({
       >
         <CircleUserRound
           color={styles.meta.darkIconColor.color}
-          size={styles.meta.iconMedium.width}
-          strokeWidth={styles.meta.iconMedium.strokeWidth}
+          size={styles.meta.iconLarge.width}
+          strokeWidth={styles.meta.iconLarge.strokeWidth}
         />
       </Pressable>
     </View>

@@ -5,6 +5,7 @@ export type BrandProductsTheme = {
   accentColor: string;
   backgroundColor: string;
   cardBackgroundColor: string;
+  filterChipTextActiveColor: string;
   headlineAccentColor: string;
   secondaryOnDarkColor: string;
   selectorLabelKey: string;

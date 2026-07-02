@@ -21,15 +21,15 @@ export function createBottomNavigationStyles(theme: AppTheme, insets: EdgeInsets
       width: '100%',
       maxWidth: theme.layout.bottomNavMaxWidth,
       minHeight: theme.layout.bottomNavHeight,
-      borderRadius: theme.radii.xl,
+      borderRadius: theme.radii.cta,
       backgroundColor: theme.colors.surface,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: theme.colors.border,
       paddingHorizontal: theme.layout.bottomNavHorizontalPadding,
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: theme.spacing.sm,
+      justifyContent: 'center',
+      gap: theme.layout.bottomNavItemGap,
     },
     itemPressable: {
       flex: theme.layout.screenFlex,
@@ -38,6 +38,9 @@ export function createBottomNavigationStyles(theme: AppTheme, insets: EdgeInsets
       alignItems: 'center',
       justifyContent: 'center',
     },
+    activeItemPressable: {
+      minWidth: theme.layout.bottomNavActiveMinWidth,
+    },
     itemContent: {
       minHeight: theme.layout.bottomNavItemMinWidth,
       alignItems: 'center',
@@ -45,11 +48,12 @@ export function createBottomNavigationStyles(theme: AppTheme, insets: EdgeInsets
       gap: theme.spacing.sm,
     },
     activeItemContent: {
-      width: theme.layout.bottomNavActiveSize,
+      width: '100%',
       height: theme.layout.bottomNavActiveSize,
-      borderRadius: theme.radii.pill,
+      borderRadius: theme.radii.sm,
       backgroundColor: theme.colors.ctaDark,
       gap: theme.spacing.sm,
+      paddingHorizontal: theme.spacing.md,
     },
     label: {
       color: theme.colors.text,

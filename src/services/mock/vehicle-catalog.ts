@@ -6,8 +6,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
   zeekr: {
     brandId: 'zeekr',
     filters: [
-      { id: 'all', labelKey: 'brandProducts.filters.all' },
-      { id: 'models', labelKey: 'brandProducts.filters.models' },
+      { id: 'vehicles', labelKey: 'brandProducts.filters.vehicles' },
       { id: 'services', labelKey: 'brandProducts.filters.services' },
     ],
     vehicles: [
@@ -26,7 +25,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '47.500',
           currency: 'EUR',
         },
-        filterIds: ['models'],
+        filterIds: ['vehicles'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '655 km' },
           { id: 'power', labelKey: 'brandProducts.metrics.power', value: '475 kW' },
@@ -48,7 +47,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '54.100',
           currency: 'EUR',
         },
-        filterIds: ['models'],
+        filterIds: ['vehicles'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '615 km' },
           { id: 'power', labelKey: 'brandProducts.metrics.power', value: '475 kW' },
@@ -60,8 +59,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
   geely: {
     brandId: 'geely',
     filters: [
-      { id: 'all', labelKey: 'brandProducts.filters.all' },
-      { id: 'models', labelKey: 'brandProducts.filters.models' },
+      { id: 'vehicles', labelKey: 'brandProducts.filters.vehicles' },
       { id: 'services', labelKey: 'brandProducts.filters.services' },
     ],
     vehicles: [
@@ -81,7 +79,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '35.900',
           currency: 'EUR',
         },
-        filterIds: ['models'],
+        filterIds: ['vehicles'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '430 km' },
           { id: 'power', labelKey: 'brandProducts.metrics.power', value: '160 kW' },
@@ -104,7 +102,7 @@ const brandCatalogs: Record<BrandId, BrandCatalogDto> = {
           value: '38.900',
           currency: 'EUR',
         },
-        filterIds: ['models'],
+        filterIds: ['vehicles'],
         metrics: [
           { id: 'range', labelKey: 'brandProducts.metrics.range', value: '410 km' },
           { id: 'comfort', labelKey: 'brandProducts.metrics.comfort', value: 'HUD 13.8"' },

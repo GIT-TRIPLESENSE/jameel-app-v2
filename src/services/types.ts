@@ -95,7 +95,7 @@ export type DealerNetworkService = {
   getBrandDealerNetwork(brandId: BrandId): Promise<ApiResponse<BrandDealerNetworkDto>>;
 };
 
-export type VehicleFilterId = 'all' | 'models' | 'services';
+export type VehicleFilterId = 'vehicles' | 'services';
 
 export type VehicleFilterDto = {
   id: VehicleFilterId;

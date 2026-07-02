@@ -33,7 +33,7 @@ export function createBrandProductsStyles(
         alignSelf: 'center',
         paddingHorizontal: pagePadding,
         paddingTop: theme.spacing.base,
-        gap: theme.spacing.lg,
+        gap: theme.spacing.base,
       },
       header: {
         position: 'relative',
@@ -42,16 +42,17 @@ export function createBrandProductsStyles(
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: theme.spacing.base,
+        marginBottom: theme.spacing.md,
       },
       brandSelector: {
         zIndex: theme.layout.screenFlex,
-        minHeight: theme.layout.headerControlMinHeight,
+        height: theme.layout.ctaMinHeight,
         width: theme.layout.headerBrandSelectorWidth,
         paddingHorizontal: theme.spacing.md,
-        borderRadius: theme.radii.pill,
-        backgroundColor: theme.colors.glassFillStrong,
+        borderRadius: theme.radii.cta,
+        backgroundColor: theme.colors.ctaLight,
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: theme.colors.border,
+        borderColor: theme.colors.ctaLight,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -83,9 +84,7 @@ export function createBrandProductsStyles(
         alignItems: 'center',
         justifyContent: 'center',
       },
-      hero: {
-        gap: theme.spacing.lg,
-      },
+      hero: {},
       headline: {
         gap: theme.spacing.sm,
       },
@@ -97,12 +96,6 @@ export function createBrandProductsStyles(
       },
       headlineAccent: {
         color: brandTheme.headlineAccentColor,
-      },
-      sectionTitle: {
-        color: theme.colors.text,
-        fontFamily: theme.typography.fontFamilies.bold,
-        fontSize: theme.typography.sizes.sectionTitle,
-        lineHeight: theme.typography.lineHeights.sectionTitle,
       },
       filterScrollContent: {
         gap: theme.spacing.md,
@@ -131,7 +124,7 @@ export function createBrandProductsStyles(
         textAlign: 'center',
       },
       filterChipTextActive: {
-        color: theme.colors.textOnAccent,
+        color: brandTheme.filterChipTextActiveColor,
         fontFamily: theme.typography.fontFamilies.bold,
       },
       catalog: {
@@ -361,6 +354,10 @@ export function createBrandProductsStyles(
       },
       iconMedium: {
         width: theme.icon.md,
+        strokeWidth: theme.icon.stroke,
+      },
+      iconLarge: {
+        width: theme.icon.lg,
         strokeWidth: theme.icon.stroke,
       },
       vehicleScrim: {

@@ -17,11 +17,7 @@ type SolutionPathsProps = {
 export function SolutionPaths({ entries, onAction, quizPath, styles }: SolutionPathsProps) {
   return (
     <View style={styles.alternatingSection}>
-      <SectionHeader
-        eyebrowKey="jameelHome.solutions.eyebrow"
-        styles={styles}
-        titleKey="jameelHome.solutions.title"
-      />
+      <SectionHeader styles={styles} titleKey="jameelHome.solutions.title" />
       <View style={styles.solutionStack}>
         <View style={styles.brandGrid}>
           {entries.map((entry) => (

@@ -62,10 +62,8 @@ export const en = {
         headlineRest: 'electric by design',
       },
     },
-    modelsTitle: 'Models',
     filters: {
-      all: 'All',
-      models: 'Models',
+      vehicles: 'Vehicles',
       services: 'Services',
     },
     price: {
@@ -259,8 +257,7 @@ export const en = {
       imageAlt: 'Night skyline with illuminated city highways',
     },
     solutions: {
-      eyebrow: 'Choose your first step',
-      title: 'Choose a vehicle path, or take the quiz.',
+      title: 'Our solution',
       geely: {
         meta: 'Concrete everyday mobility',
         title: 'Geely for a practical electrified routine.',

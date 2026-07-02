@@ -26,9 +26,6 @@ export function BrandProductsHero({
           {t(headlineRestKey)}
         </Text>
       </View>
-      <Text numberOfLines={1} style={styles.sectionTitle}>
-        {t('brandProducts.modelsTitle')}
-      </Text>
     </View>
   );
 }

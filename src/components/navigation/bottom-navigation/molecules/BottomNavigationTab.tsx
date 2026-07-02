@@ -34,7 +34,11 @@ export function BottomNavigationTab({
       accessibilityRole="button"
       accessibilityState={{ selected: isActive }}
       onPress={onPress}
-      style={({ pressed }) => [styles.itemPressable, pressed && styles.pressed]}
+      style={({ pressed }) => [
+        styles.itemPressable,
+        isActive && styles.activeItemPressable,
+        pressed && styles.pressed,
+      ]}
     >
       <View style={[styles.itemContent, isActive && styles.activeItemContent]}>
         <BottomNavigationIcon color={iconColor} icon={item.icon} theme={theme} />

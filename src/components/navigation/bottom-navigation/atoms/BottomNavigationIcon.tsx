@@ -9,5 +9,5 @@ type BottomNavigationIconProps = {
 };
 
 export function BottomNavigationIcon({ color, icon: Icon, theme }: BottomNavigationIconProps) {
-  return <Icon color={color} size={theme.icon.lg} strokeWidth={theme.icon.stroke} />;
+  return <Icon color={color} size={theme.icon.md} strokeWidth={theme.icon.stroke} />;
 }

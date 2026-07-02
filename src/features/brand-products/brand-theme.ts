@@ -24,7 +24,9 @@ export function createBrandProductsTheme(theme: AppTheme, brandId: BrandId): Bra
     accentColor: brandColors.accent,
     backgroundColor: brandColors.background,
     cardBackgroundColor: brandColors.primary,
-    headlineAccentColor: brandId === 'geely' ? brandColors.primary : brandColors.accent,
+    filterChipTextActiveColor:
+      brandId === 'zeekr' ? theme.colors.textOnDark : theme.colors.textOnAccent,
+    headlineAccentColor: brandColors.accent,
     secondaryOnDarkColor:
       brandId === 'zeekr' ? theme.colors.zeekr.secondary : theme.colors.textOnDark,
     selectorLabelKey: `brandProducts.brands.${brandId}.selector`,

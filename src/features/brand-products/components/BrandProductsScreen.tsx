@@ -19,6 +19,8 @@ type BrandProductsScreenProps = {
   onBrandContextSelect?: (selection: BrandContextSelection) => void;
 };
 
+const defaultFilterId: VehicleFilterId = 'vehicles';
+
 export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProductsScreenProps) {
   const { theme } = useAppTheme();
   const { width } = useWindowDimensions();
@@ -27,7 +29,7 @@ export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProd
     selectedFilterId: VehicleFilterId;
   }>({
     brandId,
-    selectedFilterId: 'all',
+    selectedFilterId: defaultFilterId,
   });
   const isCompact = width < theme.layout.mobileContentMaxWidth;
   const brandTheme = useMemo(() => createBrandProductsTheme(theme, brandId), [brandId, theme]);
@@ -36,7 +38,8 @@ export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProd
     [brandTheme, isCompact, theme],
   );
   const { data: catalog, isError, isPending } = useBrandCatalog(brandId);
-  const selectedFilterId = filterState.brandId === brandId ? filterState.selectedFilterId : 'all';
+  const selectedFilterId =
+    filterState.brandId === brandId ? filterState.selectedFilterId : defaultFilterId;
 
   const handleFilterChange = (filterId: VehicleFilterId) => {
     setFilterState({
@@ -48,10 +51,6 @@ export function BrandProductsScreen({ brandId, onBrandContextSelect }: BrandProd
   const visibleVehicles = useMemo(() => {
     if (!catalog) {
       return [];
-    }
-
-    if (selectedFilterId === 'all') {
-      return catalog.vehicles;
     }
 
     return catalog.vehicles.filter((vehicle) => vehicle.filterIds.includes(selectedFilterId));
